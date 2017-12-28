@@ -3,6 +3,9 @@ $username = $_GET["username"];
 $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$username.'","limit":"100"}';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
+
+
+
 echo '<style>
 a {
   text-decoration:none;
@@ -21,17 +24,67 @@ echo '<center><a href="index.php">
 echo '<div class="w3-container">';
 echo '<table class="w3-table w3-striped w3-border" align="center">';
 $total_price = 0;
+
+
+			echo '<tr style="background: #cf5;"><td>Author</td><td>Parent</td><td>POST LINK</td><td>PENDING PAYOUT</td><td>YOUR EXPECTED PAYOUT</td></tr>';
 foreach ($data as $item) {
+	
 	try
 	{
+		
 		if(!($item["pending_payout_value"]=="0.000 SBD"))
 		{
 			echo "<tr>";
 			$post_link = "https://www.steemit.com/@".$item["author"]."/".$item["permlink"];
-			$post_title = $item["title"];
+			
+			$author_link = "https://www.steemit.com/@".$item["author"];
+			$post_title = substr($item["title"],0,44).'...';
+			
+			
+			
 			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
-			$total_price = $total_price + $price;
-			echo '<td><a target="_BLANK" href="'.$post_link.'"/>'.$post_title.'</td> <td>'.$item["pending_payout_value"].'</td>';
+			
+			
+			//Adjustment For 75% Returns for Authors
+			if ($username == $item["author"]){
+				
+				
+				if ($item["parent_permlink"] == 'utopian-io'){
+					$each_pay  = ($price  * 0.75) - ($price * 0.1125);
+					$total_price = $total_price + $each_pay;
+					
+					}
+				
+				else {$each_pay  = $price  * 0.75;
+						$total_price = $each_pay;
+					
+					
+				}
+				
+				
+				
+				$each_pay  = $each_pay.' SBD';
+				} 
+				else { $each_pay = $price  * 0.25;
+$each_pay = '<'.$each_pay. ' SP';
+				}
+		
+		
+	
+		echo '<td><a style="color: blue;" target="_BLANK" href="'.$author_link.'"/>@'.$item["author"].'</td>';
+		
+		
+		echo '<td>'.$item["parent_permlink"].'</td>';
+		
+			echo '<td><a style="color: green;" target="_BLANK" href="'.$post_link.'"/>'.$post_title.'</td>';
+
+			
+			
+			
+			echo '<td style="color: royal_blue;">'.$item["pending_payout_value"].'</td>';
+			
+			echo '<td style="color: blue;">'.$each_pay.'</td>';
+		
 			echo "</tr>";
 			wait(0.1);
 		}
@@ -40,7 +93,7 @@ foreach ($data as $item) {
 	{
 	}
 }
-echo '<center>Total SBD:'.$total_price.'</center>';
+echo '<center>Total SBD Payout:'.$total_price.' SBD</center>';
 echo '</table>';
 echo '</div>';
 echo '</body>';
