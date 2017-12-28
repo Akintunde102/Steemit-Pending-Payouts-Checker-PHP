@@ -1,5 +1,6 @@
 <?php
 $username = $_GET["username"];
+$username = str_replace('@', '', $username);
 $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$username.'","limit":"100"}';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
@@ -56,7 +57,7 @@ foreach ($data as $item) {
 					}
 				
 				else {$each_pay  = $price  * 0.75;
-						$total_price = $each_pay;
+						$total_price =$total_price + $each_pay;
 					
 					
 				}
