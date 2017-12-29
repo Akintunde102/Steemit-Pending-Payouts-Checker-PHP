@@ -35,10 +35,7 @@ The htaccess file also helps tells the server to process files with .php and .ht
 The htaccess also locks the index page to index.php<br/>
 
 
-
-
-
-== Installation ==
+## Installation 
 
 1. Download this script as a zip file (from the github page https://github.com/Akintunde102/Steemit-Pending-Payouts-Checker-PHP)
 2. Copy to your server  www (or htdocs) folder
@@ -46,12 +43,12 @@ The htaccess also locks the index page to index.php<br/>
 4. Just view from your server domain name (or from localhost if you are in a local environment)
 
 
-== Changelog ==
+## Changelog
 
-= 1.0 =
-Initial Version
+## 1.0
+Initial Version<br/>
 
-= Contact me : =
+## Contact Me
 **Discord**: @akintunde <br/>
 **Email:** jegedeakintunde[at]gmail.com<br/>
 **utopian.io:** @akintunde <br/>
