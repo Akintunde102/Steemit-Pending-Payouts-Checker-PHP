@@ -1,6 +1,6 @@
 # Steemit-Pending-Payouts-Checker-PHP
 
-Name: Steem Pending Payout Checker
+Name: Steem Pending Payout Checker 
 Contributors: akintunde & oguzdelioglu {github usernames}
 Programmed with: PHP
 Requires at least: php 5.6 
@@ -20,7 +20,7 @@ If you don't know about the steem blockchain , you can read about it [here](http
 This script was forked from another script by [oguzdelioglu](https://github.com/oguzdelioglu/). 
 
 How to it works:
-1) The Script has an index page that has a form as shown below:
+The Script has an index page that has a form as shown below:
 
 <center>http://check.akin.com.ng/a.png</center>
 
