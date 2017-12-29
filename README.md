@@ -1,13 +1,13 @@
 # Steemit-Pending-Payouts-Checker-PHP
 
-Name: Steem Pending Payout Checker <br/>
-Contributors: akintunde & oguzdelioglu {github usernames}<br/>
-Programmed with: PHP<br/>
-Requires at least: php 5.6 <br/>
-Major Dependency: Steemjs API<br/>
-License: APACHE LICENSE <br/>
-License URI: https://www.apache.org/licenses/LICENSE-2.0 <br/>
-APP Address: check.akin.com.ng <br/>
+**Name:** Steem Pending Payout Checker <br/>
+**Contributors:** akintunde & oguzdelioglu {github usernames}<br/>
+**Programmed with:** PHP<br/>
+**Requires at least:** php 5.6 <br/>
+**Major Dependency:** Steemjs API<br/>
+**License:** APACHE LICENSE <br/>
+**License URI:** https://www.apache.org/licenses/LICENSE-2.0 <br/>
+**APP Address:** check.akin.com.ng <br/>
 
 ## Short Summary:
 This script calculates the pending payout of steem blockchain users.It can tested in the app address provided above.
@@ -51,11 +51,11 @@ The htaccess also locks the index page to index.php<br/>
 = 1.0 =
 Initial Version
 
-Contact me :
-Discord: @akintunde
-email: jegedeakintunde[at]gmail.com
-utopian: @akintunde
-github; @akintunde102
+= Contact me : =
+**Discord**: @akintunde <br/>
+**Email:** jegedeakintunde[at]gmail.com<br/>
+**utopian.io:** @akintunde <br/>
+**github:** @akintunde102<br/>
 
 
  
