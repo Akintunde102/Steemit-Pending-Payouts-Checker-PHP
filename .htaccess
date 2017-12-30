@@ -1,5 +1,5 @@
 <IfModule dir_module>
-    DirectoryIndex index.php
+    DirectoryIndex index.html
 </IfModule>
 
 <IfModule mime_module>
@@ -8,5 +8,5 @@ AddType application/x-httpd-php .php .html
 
 
 RewriteEngine On
-RewriteRule ^([^\.]+)$ result.php?username=$1
-RewriteRule ^([^\.]+)$ result.php?username=$1
+RewriteRule ^([^\.]+)$ result.html?username=$1
+RewriteRule ^([^\.]+)$ result.html?username=$1
