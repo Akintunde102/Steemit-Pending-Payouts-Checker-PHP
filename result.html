@@ -38,8 +38,8 @@ $(function(){
 </head>
 <body>
 <div id="particles-js"></div>
-<div class="main-w3layouts">
-	<div class="w3layouts-newsletter">
+<div class="main-akin">
+	<div class="akin-newsletter">
 		<h1><?php echo $username.'\'s Payouts'; ?></h1>
 		
 		<?php
@@ -60,7 +60,7 @@ foreach ($data as $item) {
 	try
 	{
 		
-		if(!($item["pending_payout_value"]=="0.000 SBD"))
+		if(!($item["pending_payout_value"]=="0.000 SBD") && $username == $item["author"])
 		{
 			
 			$post_link = "https://www.steemit.com/@".$item["author"]."/".$item["permlink"];
@@ -140,9 +140,8 @@ function wait($time)
 		
 		
 		
-	</div>
-	
-	
+	<br/>
+	<div style="background: #fff;"> coded by <a href="http://steemit.com/@akintunde">@akintunde</a></div>
 	
 	
 	
