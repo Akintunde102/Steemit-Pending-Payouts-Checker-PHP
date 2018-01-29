@@ -5,7 +5,78 @@ $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$usernam
 $json= file_get_contents($url);
 $data = json_decode($json,true);
 
-$total_price = 0;
+
+wait(0.01);
+
+$url_b = 'https://api.steemjs.com/get_discussions_by_comments?query={"start_author":"'.$username.'","limit":"100"}';
+$json_b= file_get_contents($url_b);
+$data_b = json_decode($json_b,true);
+
+$total_price =0;
+foreach ($data as $item) {
+	
+		
+		if(!($item["pending_payout_value"]=="0.000 SBD") && $username == $item["author"])
+		{
+			
+			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
+			//Adjustment For 75% Returns for Authors
+			if ($username == $item["author"]){
+				
+				
+				if ($item["parent_permlink"] == 'utopian-io'){
+					$each_pay  = ($price  * 0.375) - ($price * 0.1125); 
+					$total_price = $total_price + $each_pay;
+					
+					}
+				
+				else {$each_pay  = $price   * 0.375;
+						$total_price =$total_price + $each_pay;
+					
+					
+				}
+				
+				
+				
+				$each_pay  = $each_pay.' SBD';
+				} 
+				else { $each_pay = $price  * 0.25;
+$each_pay = '<'.$each_pay. ' SP';
+				}
+				
+
+}
+}
+
+
+$total_price_c =0;
+foreach ($data_b as $item) {
+
+		
+		if(!($item["pending_payout_value"]=="0.000 SBD") && $username == $item["author"])
+		{
+			
+			
+			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
+			
+			
+			//Adjustment For 75% Returns for Authors
+			if ($username == $item["author"]){
+				$each_pay  = $price   * 0.375;
+						$total_price_c =$total_price_c + $each_pay;
+			
+				
+				
+				$each_pay  = $each_pay.' SBD';
+				} 
+				else { $each_pay = $price  * 0.25;
+$each_pay = '<'.$each_pay. ' SP';
+				}
+				
+				}
+				}
+				
+	$total = $total_price + $total_price_c;
 
 ?>
 <!DOCTYPE html>
@@ -40,7 +111,7 @@ $(function(){
 <div id="particles-js"></div>
 <div class="main-akin">
 	<div class="akin-newsletter">
-		<h1><?php echo $username.'\'s Payouts'; ?></h1>
+		<h1><?php echo $username.'<br/>Blog \'s Payouts'; ?></h1>
 		
 		<?php
 		echo '<table  class="w3-table w3-striped w3-border" align="center" id="keywords" >';
@@ -55,6 +126,9 @@ $(function(){
     </thead>';
 	echo '<tbody>';
 	
+	
+	
+	
 foreach ($data as $item) {
 	
 	try
@@ -66,36 +140,80 @@ foreach ($data as $item) {
 			$post_link = "https://www.steemit.com/@".$item["author"]."/".$item["permlink"];
 			
 			$author_link = "https://www.steemit.com/@".$item["author"];
+
 			$post_title = substr($item["title"],0,44).'...';
 			
 			
 			
 			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
+
+        echo "<tr>";
+		echo '<td class="lalign"><a target="_BLANK" href="'.$author_link.'"/>@'.$item["author"].'</td>';
+		
+		
+		echo '<td>'.$item["parent_permlink"].'</td>';
+		
+			echo '<td><a target="_BLANK" href="'.$post_link.'"/>'.$post_title.'</td>';
+
 			
 			
-			//Adjustment For 75% Returns for Authors
-			if ($username == $item["author"]){
-				
-				
-				if ($item["parent_permlink"] == 'utopian-io'){
-					$each_pay  = ($price  * 0.75) - ($price * 0.1125);
-					$total_price = $total_price + $each_pay;
-					
-					}
-				
-				else {$each_pay  = $price  * 0.75;
-						$total_price =$total_price + $each_pay;
-					
-					
-				}
-				
-				
-				
-				$each_pay  = $each_pay.' SBD';
-				} 
-				else { $each_pay = $price  * 0.25;
-$each_pay = '<'.$each_pay. ' SP';
-				}
+			
+			echo '<td>'.$item["pending_payout_value"].'</td>';
+			
+			echo '<td>'.$each_pay.'</td>';
+		
+			echo "</tr>";
+			wait(0.1);
+		}
+	}
+	catch(Exception $e)
+	{
+	}
+}
+echo '<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red">TOTAL PAYOUT: '.round($total,3).'SBD </div> Comment\'s Payout: '.round($total_price,2).' SBD</div></h3></center>';
+echo '</tbody>';
+echo '</table>';
+echo '</div>';
+echo '</body>';
+
+
+?>
+		
+		
+		
+		
+		
+		<h1><?php echo $username.'<br/>Comment \'s Payouts'; ?></h1>
+		
+		<?php
+		echo '<table  class="w3-table w3-striped w3-border" align="center" id="keywords" >';
+		echo '<thead>
+      <tr style="background: #191919;">
+        <th><span>Author</span></th>
+        <th><span>Parent</span></th>
+        <th><span>Post Link</span></th>
+        <th><span>Pending Payout</span></th>
+        <th><span>Your Expected PAyout</span></th>
+      </tr>
+    </thead>';
+	echo '<tbody>';
+foreach ($data_b as $item) {
+	
+	try
+	{
+		
+		if(!($item["pending_payout_value"]=="0.000 SBD") && $username == $item["author"])
+		{
+			
+			$post_link = "https://www.steemit.com/@".$item["author"]."/".$item["permlink"];
+			
+			$author_link = "https://www.steemit.com/@".$item["author"];
+
+			$post_title = substr($item["title"],0,44).'...';
+			
+			
+			
+			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
 		
 		
 	echo "<tr>";
@@ -121,10 +239,15 @@ $each_pay = '<'.$each_pay. ' SP';
 	{
 	}
 }
-echo '<center style="background: #000;"><h3 style="color: #fff;">Total Payout: '.round($total_price,2).' SBD</h3></center>';
+
+echo '<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red">TOTAL PAYOUT: '.round($total,3).'SBD </div> Comment\'s Payout: '.round($total_price_c,2).' SBD</div></h3></center>';
 echo '</tbody>';
 echo '</table>';
+
+
 echo '</div>';
+
+
 echo '</body>';
 
 function wait($time)
@@ -133,16 +256,13 @@ function wait($time)
 	ob_flush();
 	flush();
 }
+
 ?>
 		
-		
-		
-		
-		
-		
+<!-- Js-Files 		
 	<br/>
 	<div style="background: #fff;"> coded by <a href="http://steemit.com/@akintunde">@akintunde</a></div>
-	
+	--> 
 	
 	
 </div>
