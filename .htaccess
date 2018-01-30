@@ -8,5 +8,4 @@ AddType application/x-httpd-php .php .html
 
 
 RewriteEngine On
-RewriteRule ^([^\.]+)$ result.html?username=$1
-RewriteRule ^([^\.]+)$ result.html?username=$1
+RewriteRule ^([^\.]+)$ index.php?username=$1

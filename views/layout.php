@@ -6,9 +6,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Fantasy Coming Soon Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.2/js/jquery.tablesorter.js"></script> 
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+//Table
+$(function(){
+  $('#keywords').tablesorter(); 
+});
+//Table
+$(function(){
+  $('#keywords2').tablesorter(); 
+});
+
+</script>
 <!-- CSS --> 
-<link href="css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS --> 
-<link href="css/style.css" rel='stylesheet' type='text/css'/><!-- style.css --> 
+<link href="views/pages/assets/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS --> 
+<link href="views/pages/assets/css/style.css" rel='stylesheet' type='text/css'/><!-- style.css --> 
 <!-- //CSS --> 
 <!-- Fonts --> 
 <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
@@ -16,31 +31,10 @@
 <!-- Fonts --> 
 </head>
 <body>
-<div id="particles-js"></div>
-<div class="main-akin">
-	<div class="akin-newsletter">
-		<h1>Steem Payout Checker</h1>
-		<img src="images/mk.png" alt="">
-		<form action="red.html" >
-			<input type="text" name="username" required="" placeholder="steem username" />
-			<div class="subsc-w3l">
-				<input type="submit" value="Check" />
-			</div>
-			<div class="clear"></div>
-		</form>
-	</div>
-	
-	
-	
-	
-	<div class="footer-w3l">
-		<p class="agileinfo"> &copy; 2017 Designed By <a href="http:/steemit.com/@akintunde">@akintunde</a></p>
-	</div>
-</div>
-
+    <?php require_once('routes.php'); ?>
 <!-- Js-Files --> 
-	<script src="js/particles.js"></script>
-	<script src="js/app.js"></script>
+	<script src="views/pages/assets/js/particles.js"></script>
+	<script src="views/pages/assets/js/app.js"></script>
 <!-- //Js-Files --> 
 
 </body>
