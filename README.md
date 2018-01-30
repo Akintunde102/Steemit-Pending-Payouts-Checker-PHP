@@ -20,13 +20,9 @@ If you don't know about the steem blockchain , you can read about it [here](http
 This script was forked from another script by [oguzdelioglu](https://github.com/oguzdelioglu/). <br/>
 
 ## How it works:
-The Script has an index page that has a form as shown below:
 
-![Preview](https://check.akin.com.ng/a.png)
 
-Users will have to fill this form with their steem username, submit and then they will be directed to the action page (result.php) where the script will link the steemjs api to bring in all their posts details including resteemed posts, then generate a table containing all  the generated details in a ordere form while their sbd payouts gets added up as shown below;
-
-![Preview](http://check.akin.com.ng/b.png)
+Users will have to fill this form with their steem username, submit and then they will be directed to the action page (result.php) where the script will link the steemjs api to bring in all their posts details including resteemed posts, then generate a table containing all  the generated details in a ordere form while their sbd payouts gets added up.
 
 <br/>The script also  has an htaccess file that processes the fancy url to allow users use an address like this (check.akin.com.ng/@akintunde) or (check.akin.com.ng/akintunde). This depends on the domain name that this script uses.<br/>
 
