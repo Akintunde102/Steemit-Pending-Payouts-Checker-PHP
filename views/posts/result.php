@@ -10,6 +10,7 @@
         <th><span>Parent</span></th>
         <th><span>Post Link</span></th>
         <th><span>Pending Payout</span></th>
+		 <th><span>Withdrawal Time</span></th>
         <th><span>Your Expected Payout</span></th>
       </tr>
     </thead>
@@ -27,6 +28,8 @@
 			
 			<td><?=$b['pending_payout_value']?></td>
 			
+					<td><?=$b['created']?></td>
+			
 			<td><?=$b['each_pay']?></td>
 		
 			</tr>
@@ -34,7 +37,7 @@
 	<?php } ?>
 
 
-<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red">TOTAL PAYOUT: <?=round($total,3)?> SBD </div> Post's Payout: <?=round($bTotal,2)?> SBD</div></h3></center>
+<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red;font-size: 23px;padding-left: 20px;">TOTAL PAYOUT: <?=round($total,3)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 2)?> @ $<?=$usd?> </span></div> Post's Payout: <?=round($bTotal,2)?> SBD</div></h3></center>
 </tbody>
 </table>
 
@@ -47,6 +50,7 @@
         <th><span>Parent</span></th>
         <th><span>Post Link</span></th>
         <th><span>Pending Payout</span></th>
+        <th><span>Withdrawal Time</span></th>
         <th><span>Your Expected Payout</span></th>
       </tr>
     </thead>
@@ -64,6 +68,8 @@
 			
 			<td><?=$b['pending_payout_value']?></td>
 			
+			<td><?=$b['created']?></td>
+			
 			<td><?=$b['each_pay']?></td>
 		
 			</tr>
@@ -71,7 +77,7 @@
 	<?php } ?>
 
 
-<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red">TOTAL PAYOUT: <?=round($total,3)?> SBD </div> Post's Payout: <?=round($cTotal,2)?> SBD</div></h3></center>
+<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red;font-size: 23px;padding-left: 20px;">TOTAL PAYOUT: <?=round($total,3)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 2)?> @ $<?=$usd?></span></div> Post's Payout: <?=round($cTotal,2)?> SBD</div></h3></center>
 </tbody>
 </table>
 </div>

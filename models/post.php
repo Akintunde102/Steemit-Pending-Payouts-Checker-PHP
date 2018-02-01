@@ -3,7 +3,7 @@
 class post {
     
     public function __construct() {
-		   $username = $_GET["username"];
+		   @$username = $_GET["username"];
 $username = str_replace('@', '', $username);
 $this->username      = strtolower($username);
     }
@@ -30,6 +30,8 @@ $total_price =0;
 $count = 0;
 $username = $this->username;
 $data = $this->getBlogData();
+
+
 
 foreach ($data as $item) {
 	
@@ -72,6 +74,11 @@ foreach ($data as $item) {
 				$newItems[$count]['pending_payout_value'] = $item["pending_payout_value"];
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
+							
+				$nT = str_replace("T"," ",$item["created"]);
+				$nT = strtotime($nT);
+				$newItems[$count]['created'] = $this->fancy_date($nT);
+				
 				
 				
 				
@@ -81,6 +88,7 @@ $count++;
 }
 
 $newItems['total'] = $total_price;
+$newItems['usd'] = $this->getSBD();
 }
 
 return $newItems;
@@ -136,6 +144,11 @@ foreach ($data as $item) {
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
 				
 				
+				$nT = str_replace("T"," ",$item["created"]);
+				$nT = strtotime($nT);
+				$newItems[$count]['created'] = $this->fancy_date($nT);
+				
+				
 				
 				
 				
@@ -145,11 +158,54 @@ $count++;
 }
 
 $newItems['total'] = $total_price;
+$newItems['usd'] = $this->getSBD();
 }
 
 return $newItems;
     }
-  
+	
+	
+	Public function fancy_date($timestamp) 
+	{
+		
+		$wDate = $timestamp + 604800;
+
+		$diff = $wDate-time();
+//$diff should be positive and not 0
+if( 1 > $diff ){
+   exit('Target Event Already Passed (or is passing this very instant)');
+} else {
+   $d = $diff / 86400 % 7;
+   $h = $diff / 3600 % 24;
+   $m = $diff / 60 % 60; 
+   $s = $diff % 60;
+
+   /***
+   if ($d != 0){return " {$d} days, {$h} hours, {$m} minutes and {$s} secs away!";}
+   else if ($h != 0) {return "{$h} hours, {$m} minutes and {$s} secs away!";}
+   else if ($m != 0) {return "{$m} minutes and {$s} secs away!";}
+   else if ($s != 0) {return "{$s} secs away!";}
+   **/
+   
+   return " {$d} days, {$h} hours, {$m} minutes and {$s} secs away!";
+}
+	
+	}
+	
+	
+	Public function getSBD(){
+$sbdDetails = file_get_contents('sbd.txt');
+$btc = json_decode($sbdDetails, true); // decode the JSON feed
+return round($btc[0]["price_usd"],3);
+	}
+	
+	
+	Public function fillSBD(){
+	$sbdDetails = file_get_contents('https://api.coinmarketcap.com/v1/ticker/steem-dollars/');
+$sbdfile = fopen("sbd.txt", "w") or die("Unable to open file!");
+fwrite($sbdfile, $sbdDetails);
+	fclose($sbdfile);}
+	
   }
   
 

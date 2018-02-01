@@ -11,12 +11,19 @@
 	   $username = $b->username;
 	   $blogs = $b->processBlogData();
 	   $comments = $b->processCommentData();
+	   $usd = $comments['usd'];
 	   $cTotal = $comments['total'];
 	   $bTotal = $blogs['total'];
-	  
 	   $total = $blogs['total'] + $comments['total'] ; 
 	   unset($blogs['total']); unset($comments['total']);
+	   unset($blogs['usd']); unset($comments['usd']);
       require_once('views/posts/result.php');
+    }
+	
+	public function sbd() {
+       $b = new post;
+	   $b->fillSBD();
+      require_once('views/posts/sbd.php');
     }
 
     public function error() {
