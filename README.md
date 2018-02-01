@@ -7,7 +7,7 @@
 **Major Dependency:** Steemjs API<br/>
 **License:** APACHE LICENSE <br/>
 **License URI:** https://www.apache.org/licenses/LICENSE-2.0 <br/>
-**APP Address:** check.akin.com.ng <br/>
+**APP Address:** steem.com.ng <br/>
 
 ## Short Summary:
 This script calculates the pending payout of steem blockchain users.It can tested in the app address provided above.
