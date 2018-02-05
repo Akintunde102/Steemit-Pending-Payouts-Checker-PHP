@@ -194,17 +194,20 @@ if( 1 > $diff ){
 	
 	
 	Public function getSBD(){
-$sbdDetails = file_get_contents('sbd.txt');
-$btc = json_decode($sbdDetails, true); // decode the JSON feed
-return round($btc[0]["price_usd"],3);
+		
+	$sbdDetails = $_SESSION["sbd_current_user"]; //accessing the data about Steem market value 
+	$btc = json_decode($sbdDetails, true); // decode the JSON feed
+	return round($btc[0]["price_usd"],3);
+	
 	}
 	
 	
 	Public function fillSBD(){
+		
 	$sbdDetails = file_get_contents('https://api.coinmarketcap.com/v1/ticker/steem-dollars/');
-$sbdfile = fopen("sbd.txt", "w") or die("Unable to open file!");
-fwrite($sbdfile, $sbdDetails);
-	fclose($sbdfile);}
+    $_SESSION["sbd_current_user"] = $sbdDetails; //storing the data of market value for in SESSION not as a local file because of bugs and logic complications
+	
+	}
 	
   }
   
