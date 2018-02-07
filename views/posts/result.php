@@ -75,9 +75,7 @@
 			</tr>
 		
 	<?php } ?>
-
-
-<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red;font-size: 23px;padding-left: 20px;">TOTAL PAYOUT: <?=round($total,3)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 2)?> @ $<?=$usd?></span></div> Post's Payout: <?=round($cTotal,2)?> SBD</div></h3></center>
+<center style="background: #000;"><h3 style="color: #fff;"> <div style="background: white;color: red;font-size: 23px;padding-left: 20px;">TOTAL PAYOUT: <?=round($total,3)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 2)?> @ $<?=$usd?></span></div> Comment's Payout: <?=round($cTotal,2)?> SBD</div></h3></center>
 </tbody>
 </table>
 </div>
