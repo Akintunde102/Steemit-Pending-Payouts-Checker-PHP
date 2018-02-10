@@ -12,7 +12,6 @@
 		</form>
 	</div>
 	<div class="footer-w3l">
-		<p class="agileinfo"> &copy; 2017 Design Powered By <a href="http:/w3layouts.com">w3layout </a><br/>Developed By 
-		<a href="http://steemit.com/@akintunde">@akintunde</a></p>
+		<p class="agileinfo"> &copy; 2017 Designed By <a href="http:/steemit.com/@akintunde">@akintunde</a></p>
 	</div>
 </div>
