@@ -9,8 +9,7 @@ $this->username      = strtolower($username);
     }
 
 
-
-    public function getBlogData() {
+Public function getBlogData() {
 $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$this->username.'","limit":"100"}';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
@@ -195,8 +194,29 @@ if( 1 > $diff ){
 	
 	Public function getSBD(){
 $sbdDetails = file_get_contents('sbd.txt');
-$btc = json_decode($sbdDetails, true); // decode the JSON feed
-return round($btc[0]["price_usd"],3);
+$sbd = json_decode($sbdDetails, true); // decode the JSON feed
+return round($sbd[0]["price_usd"],3);
+	}
+	
+	Public function getSTEEM(){
+$steemDetails = file_get_contents('steem.txt');
+$steem = json_decode($steemDetails, true); // decode the JSON feed
+return round($steem[0]["price_usd"],3);
+	}
+	
+	
+	
+	Public function getCURR(){
+$currDetails = file_get_contents('curr.txt');
+$curr = json_decode($currDetails, true); // decode the JSON feed
+$ret = array();
+$ret['NGN'] = round($curr["quotes"]["USDNGN"],3);
+$ret['EUR'] = round($curr["quotes"]["USDEUR"],3);
+$ret['GBP'] = round($curr["quotes"]["USDGBP"],3);
+$ret['ZAR'] = round($curr["quotes"]["USDZAR"],3);
+$ret['GHS'] = round($curr["quotes"]["USDGHS"],3);
+$ret['CAD'] = round($curr["quotes"]["USDCAD"],3);
+return $ret;
 	}
 	
 	

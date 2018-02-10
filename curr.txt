@@ -1,0 +1,1 @@
+{"success":true,"terms":"https:\/\/currencylayer.com\/terms","privacy":"https:\/\/currencylayer.com\/privacy","timestamp":1518241452,"source":"USD","quotes":{"USDNGN":358.000344,"USDGHS":4.443904,"USDEUR":0.815804,"USDCAD":1.257404,"USDGBP":0.72325,"USDZAR":12.030364}}
