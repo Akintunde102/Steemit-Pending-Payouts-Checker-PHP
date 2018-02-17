@@ -22,7 +22,7 @@
 	   $curr = $b->getCURR();
 	   
 	   $EUR_R = round($curr["EUR"]*$usd,2);
-	   $EUR = round($usd*$curr["GHS"]*$total,2);
+	   $EUR = round($usd*$curr["EUR"]*$total,2);
 	   $EUR = number_format($EUR, 2);
 	   
 	   $NGN_R = round($curr["NGN"]*$usd,2);
@@ -54,6 +54,13 @@
        $b = new post;
 	   $b->fillSBD();
       require_once('views/posts/sbd.php');
+    }
+	
+	public function print() {
+       $b = new post;
+	  $p = trim($_GET['print']);
+	$b->print($p);
+	  // require_once('views/posts/print.php');
     }
 
     public function error() {

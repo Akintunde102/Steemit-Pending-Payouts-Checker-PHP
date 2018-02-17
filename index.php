@@ -9,6 +9,11 @@ include ('models/post.php');
     $action     = 'results'; 
 	  
   }
+  else if (isset($_GET['print'])){
+	 $controller = 'pages';
+    $action     = 'print'; 
+	  
+  }
   else if (isset($_GET['sbd'])){
 	 $controller = 'pages';
     $action     = 'sbd'; 
