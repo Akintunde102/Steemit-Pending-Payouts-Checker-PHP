@@ -1,13 +1,17 @@
 <?php
   class PagesController {
     public function home() {
-      $first_name = 'Jon';
-      $last_name  = 'Snow';
+	include('models/lang.php');
+	include('views/posts/head.php');
       require_once('views/pages/home.php');
+	  	include('views/posts/foot.php');
     }
 	
 	public function results() {
+	   include('models/lang.php');
+	   include('views/posts/head.php');
        $b = new post;
+	  $site_name = $b->site_name;
 	   $username = $b->username;
 	   $blogs = $b->processBlogData();
 	   $comments = $b->processCommentData();
@@ -48,6 +52,7 @@
 	   unset($blogs['total']); unset($comments['total']);
 	   unset($blogs['usd']); unset($comments['usd']);
       require_once('views/posts/result.php');
+	  include('views/posts/foot.php');
     }
 	
 	public function sbd() {

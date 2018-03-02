@@ -1,5 +1,4 @@
 <?php
-
 class post {
     
     public function __construct() {
@@ -10,6 +9,12 @@ class post {
 $username = str_replace('@', '', $username);
 $this->username      = strtolower($username);
 @$this->x   =  $x;
+
+global $lang,$site_name;
+ $this->lang = $lang;
+ $this->site_name = 'localhost';
+
+
     }
 
 	
@@ -28,6 +33,7 @@ Public function getBlogData() {
 $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$this->username.'","limit":"100"}';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
+
 return $data;
 	}
 
@@ -94,7 +100,9 @@ foreach ($data as $item) {
 				$newItems[$count]['pending_payout_value'] = $item["pending_payout_value"];
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
-				
+				$newItems[$count]['voters'] = $item["active_votes"];
+			
+                $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
 				
 if (empty($newItems[$count]['b_account'])){$newItems[$count]['b_account'] = 'NONE'; $newItems[$count]['b_percent'] = 0; $newItems[$count]['b_money'] = 0;}
 				
@@ -116,7 +124,15 @@ $newItems['usd'] = $this->getSBD();
 
 return $newItems;
     }
- 
+
+	private function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
+    $sort_col = array();
+    foreach ($arr as $key=> $row) {
+        $sort_col[$key] = $row[$col];
+    }
+array_multisort($sort_col, $dir, $arr);
+}
+	
  public  function processCommentData() {
 	$newItems = array();
 $total_price =0;
@@ -165,7 +181,9 @@ foreach ($data as $item) {
 				$newItems[$count]['pending_payout_value'] = $item["pending_payout_value"];
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
-				
+				$newItems[$count]['voters'] = $item["active_votes"];
+			
+                $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
 				
 				$nT = str_replace("T"," ",$item["created"]);
 				$nT = strtotime($nT);
@@ -194,24 +212,14 @@ return $newItems;
 		$wDate = $timestamp + 604800;
 
 		$diff = $wDate-time();
-//$diff should be positive and not 0
-if( 1 > $diff ){
-   exit('Target Event Already Passed (or is passing this very instant)');
-} else {
+
    $d = $diff / 86400 % 7;
    $h = $diff / 3600 % 24;
    $m = $diff / 60 % 60; 
    $s = $diff % 60;
-
-   /***
-   if ($d != 0){return " {$d} days, {$h} hours, {$m} minutes and {$s} secs away!";}
-   else if ($h != 0) {return "{$h} hours, {$m} minutes and {$s} secs away!";}
-   else if ($m != 0) {return "{$m} minutes and {$s} secs away!";}
-   else if ($s != 0) {return "{$s} secs away!";}
-   **/
    
    return " {$d} days, {$h} hours, {$m} minutes and {$s} secs away!";
-}
+
 	
 	}
 	
@@ -252,6 +260,7 @@ fwrite($sbdfile, $sbdDetails);
 
 Public function print($p){
 require 'src/PHPImage.php';
+$lang = $this->lang;
 $bg = 'pro/image.jpg';
 $time = date("M d, Y h:i:s");
 
@@ -330,7 +339,7 @@ $time = date("M d, Y h:i:s");
 	$image->text('Printed from Steem.Com.Ng', array('fontSize' => 15, 'x' => 440, 'y' => 10));
 	
 	$image->setTextColor(array(255,255,255));
-	$image->text(ucfirst($username).'\'s Weekly Payout', array('fontSize' => 30, 'x' => 110, 'y' =>50));
+	$image->text(ucfirst($username).$lang['ImgWeekPay'], array('fontSize' => 30, 'x' => 110, 'y' =>50));
 	
 		$image->setFont('pro/sugiyama.ttf');
 	$image->setTextColor(array(0,0,0));

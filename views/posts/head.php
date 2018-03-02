@@ -19,6 +19,7 @@ $(function(){
 $(function(){
   $('#keywords2').tablesorter(); 
 });
+
 </script>
 <!-- CSS --> 
 <link href="views/pages/assets/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS --> 
@@ -30,11 +31,3 @@ $(function(){
 <!-- Fonts --> 
 </head>
 <body>
-    <?php require_once('routes.php'); ?>
-<!-- Js-Files --> 
-	<script src="views/pages/assets/js/particles.js"></script>
-	<script src="views/pages/assets/js/app.js"></script>
-<!-- //Js-Files --> 
-
-</body>
-</html>

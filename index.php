@@ -1,5 +1,6 @@
 <?php
-include ('models/post.php');
+
+include('models/post.php');
   if (isset($_GET['controller']) && isset($_GET['action'])) {
     $controller = $_GET['controller'];
     $action     = $_GET['action'];
@@ -24,6 +25,6 @@ include ('models/post.php');
     $controller = 'pages';
     $action     = 'home';
   }
-
-  require_once('views/layout.php');
+ 
+  require_once('routes.php');
 ?>
