@@ -33,7 +33,6 @@ Public function getBlogData() {
 $url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$this->username.'","limit":"100"}';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
-
 return $data;
 	}
 
@@ -50,6 +49,21 @@ $total_price =0;
 $count = 0;
 $username = $this->username;
 $data = $this->getBlogData();
+
+
+  $usd = $this->getSBD();
+$curr = $this->getCURR();	  
+	
+if (!empty($_GET['curr'])){	
+if ($_GET['curr'] == 'eur'){$mult = round($curr["EUR"]*$usd,2); $ext = 'EUR'; }
+else if ($_GET['curr'] == 'zar'){$mult = round($curr["ZAR"]*$usd,2); $ext = 'RANDS';}
+else if ($_GET['curr'] == 'ghs'){$mult = round($curr["GHS"]*$usd,2); $ext = 'CEDIS';}
+else if ($_GET['curr'] == 'ngn'){$mult = round($curr["NGN"]*$usd,2); $ext = 'NAIRA';}
+else if ($_GET['curr'] == 'cad'){$$mult = round($curr["CAD"]*$usd,2); $ext = 'C$';}
+else if ($_GET['curr'] == 'gbp'){$mult = round($curr["GBP"]*$usd,2); $ext = 'POUNDS';}
+else if ($_GET['curr'] == 'dollars'){$mult = round($usd,2); $ext = 'DOLLAR';}
+}
+else {$mult = 1; $ext = 'sbd';}
 
 foreach ($data as $item) {
 	
@@ -82,7 +96,10 @@ foreach ($data as $item) {
 					$newItems[$count]['b_account'] = $item['beneficiaries'][0]["account"];
 				$newItems[$count]['b_percent'] = $item['beneficiaries'][0]["weight"]/100;
 				$newItems[$count]['b_money'] = ($newItems[$count]['b_percent']/100)*$price;
-				$newItems[$count]['b_money'] = round($newItems[$count]['b_money'],2);
+				$newItems[$count]['b_money'] = round($newItems[$count]['b_money'],2)*$mult;
+				
+				
+				
 				
 					}
 				else {$each_pay  = $price   * 0.375;
@@ -90,7 +107,7 @@ foreach ($data as $item) {
 				}
 				
 				
-				$each_pay  = $each_pay.' SBD';
+				$each_pay  = $each_pay*$mult.' '.$ext;
 				
 				
 				$newItems[$count]['author_link'] = $author_link;
@@ -101,6 +118,8 @@ foreach ($data as $item) {
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
 				$newItems[$count]['voters'] = $item["active_votes"];
+				
+				
 			
                 $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
 				
@@ -110,11 +129,14 @@ if (empty($newItems[$count]['b_account'])){$newItems[$count]['b_account'] = 'NON
 				$nT = strtotime($nT);
 				$newItems[$count]['created'] = $this->fancy_date($nT);
 				
-				
-				
-				
-			}
-				
+				//Final Payment		
+$newItems[$count]['pending_payout_value'] = str_replace(" SBD", "", $newItems[$count]['pending_payout_value']);	
+$newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_value'] * $mult;
+$newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_value'].' '.$ext;	
+$newItems[$count]['b_ext'] = $ext;				
+	
+	}
+		
 $count++;
 }
 
@@ -140,6 +162,23 @@ $count = 0;
 $username = $this->username;
 $data = $this->getCommentData();
 
+
+
+  $usd = $this->getSBD();
+$curr = $this->getCURR();	  
+	
+if (!empty($_GET['curr'])){	
+if ($_GET['curr'] == 'eur'){$mult = round($curr["EUR"]*$usd,2); $ext = 'EUR'; }
+else if ($_GET['curr'] == 'zar'){$mult = round($curr["ZAR"]*$usd,2); $ext = 'RANDS';}
+else if ($_GET['curr'] == 'ghs'){$mult = round($curr["GHS"]*$usd,2); $ext = 'CEDIS';}
+else if ($_GET['curr'] == 'ngn'){$mult = round($curr["NGN"]*$usd,2); $ext = 'NAIRA';}
+else if ($_GET['curr'] == 'cad'){$$mult = round($curr["CAD"]*$usd,2); $ext = 'C$';}
+else if ($_GET['curr'] == 'gbp'){$mult = round($curr["GBP"]*$usd,2); $ext = 'POUNDS';}
+else if ($_GET['curr'] == 'dollars'){$mult = round($usd,2); $ext = 'DOLLAR';}
+}
+else {$mult = 1; $ext = 'sbd';}
+	   
+	   
 foreach ($data as $item) {
 	
 		
@@ -171,7 +210,7 @@ foreach ($data as $item) {
 				}
 				
 				
-				$each_pay  = $each_pay.' SBD';
+				$each_pay  = $each_pay*$mult.' '.$ext;
 				
 			
 				$newItems[$count]['author_link'] = $author_link;
@@ -183,6 +222,9 @@ foreach ($data as $item) {
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
 				$newItems[$count]['voters'] = $item["active_votes"];
 			
+			
+			
+			
                 $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
 				
 				$nT = str_replace("T"," ",$item["created"]);
@@ -191,8 +233,10 @@ foreach ($data as $item) {
 				
 				
 				
-				
-				
+	//Final Payment		
+$newItems[$count]['pending_payout_value'] = str_replace(" SBD", "", $newItems[$count]['pending_payout_value']);	
+$newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_value'] * $mult;
+$newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_value'].' '.$ext;
 			}
 				
 $count++;
@@ -201,6 +245,14 @@ $count++;
 $newItems['total'] = $total_price;
 $newItems['usd'] = $this->getSBD();
 }
+
+
+     
+	
+
+
+
+
 
 return $newItems;
     }

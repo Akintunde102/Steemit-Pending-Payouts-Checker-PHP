@@ -16,7 +16,7 @@ $lang['Name'] = 'Steem Payout Checker';
 $lang['home_placeholder'] = 'Steem Username';
 $lang['home_btnv'] = 'Check';
 $lang['codedby'] = '&copy; 2017 Coded By';
-$lang['designby'] = '&nbsp; || Designed By';
+$lang['designby'] = '&nbsp; || Design Based On';
 
 
 $lang['Author'] = 'Author';
@@ -35,3 +35,4 @@ $lang['ImgWeekPay'] = '\'s Weekly Payout';
 $lang['EnglishTranslate'] = 'ENGLISH';
 $lang['SpanishTranslate'] = 'SPANISH';
 $lang['giver'] = 'Highest Giver';
+$lang['Voterslist'] = 'Voter\'s  List';

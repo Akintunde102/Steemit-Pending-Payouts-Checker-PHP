@@ -9,12 +9,15 @@
 	
 	public function results() {
 	   include('models/lang.php');
+	   include('models/curr.php');
 	   include('views/posts/head.php');
        $b = new post;
-	  $site_name = $b->site_name;
+	   $site_name = $b->site_name;
 	   $username = $b->username;
 	   $blogs = $b->processBlogData();
+	   
 	   $comments = $b->processCommentData();
+	   
 	   $usd = $comments['usd'];
 	   $cTotal = $comments['total'];
 	   $bTotal = $blogs['total'];
