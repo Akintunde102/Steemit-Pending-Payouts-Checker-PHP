@@ -21,7 +21,8 @@ $lang['designby'] = '&nbsp; || diseñada por';
 
 $lang['Author'] = 'Autor';
 $lang['Beneficiary'] = 'Beneficiario';
-$lang['PostLink'] = 'Enlace de publicación';
+$lang['PostLink'] = 'Enlace de Publicación';
+$lang['CommentLink'] = 'Enlace de Comentario';
 $lang['PendingPayout'] = 'Pago pendiente' ;
 $lang['WithdrawalTime'] = 'Tiempo de retiro';
 $lang['Parent'] = 'Enlace Superior';
@@ -35,3 +36,4 @@ $lang['ImgWeekPay'] = '\'s Pago semanal';
 $lang['EnglishTranslate'] = 'Inglés';
 $lang['SpanishTranslate'] = 'Español';
 $lang['giver'] = 'Mayor dador';
+$lang['ExchangeRate'] = 'Exchange Rate';

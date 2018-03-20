@@ -23,6 +23,8 @@
 	   $bTotal = $blogs['total'];
 	   $total = $blogs['total'] + $comments['total']; 
 	   
+	   $ext = $blogs[0]['b_ext'];
+	   
 	   $steem_usd = $b->getSTEEM();
 	   $steem = ($total*$steem_usd)/$usd;
 	   $steem = round($steem,2);

@@ -96,7 +96,7 @@ foreach ($data as $item) {
 					$newItems[$count]['b_account'] = $item['beneficiaries'][0]["account"];
 				$newItems[$count]['b_percent'] = $item['beneficiaries'][0]["weight"]/100;
 				$newItems[$count]['b_money'] = ($newItems[$count]['b_percent']/100)*$price;
-				$newItems[$count]['b_money'] = round($newItems[$count]['b_money'],2)*$mult;
+				$newItems[$count]['b_money'] = round($newItems[$count]['b_money'],3)*$mult;
 				
 				
 				
@@ -120,8 +120,25 @@ foreach ($data as $item) {
 				$newItems[$count]['voters'] = $item["active_votes"];
 				
 				
-			
+					
                 $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
+				
+				$rshares_sum = array_sum(array_map(function($var) {
+  return $var['rshares'];
+}, $newItems[$count]['voters']));
+
+
+$key = 0;
+
+foreach($newItems[$count]['voters'] as $csm)
+ { $aMoney = $price;
+	 $vFraction = $csm['rshares']/ $rshares_sum;
+	 $vMoney = $vFraction * $aMoney;
+  $newItems[$count]['voters'][$key]['money'] = $vMoney * $mult;
+    $newItems[$count]['voters'][$key]['percent'] = $newItems[$count]['voters'][$key]['percent'] / 100;
+  $key++;
+ }
+ 
 				
 if (empty($newItems[$count]['b_account'])){$newItems[$count]['b_account'] = 'NONE'; $newItems[$count]['b_percent'] = 0; $newItems[$count]['b_money'] = 0;}
 				
@@ -140,7 +157,7 @@ $newItems[$count]['b_ext'] = $ext;
 $count++;
 }
 
-$newItems['total'] = $total_price;
+$newItems['total']  = $total_price * $mult;
 $newItems['usd'] = $this->getSBD();
 }
 
@@ -224,8 +241,23 @@ foreach ($data as $item) {
 			
 			
 			
-			
-                $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
+			                $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
+				
+				$rshares_sum = array_sum(array_map(function($var) {
+  return $var['rshares'];
+}, $newItems[$count]['voters']));
+
+
+$key = 0;
+
+foreach($newItems[$count]['voters'] as $csm)
+ { $aMoney = $price;
+	 $vFraction = $csm['rshares']/ $rshares_sum;
+	 $vMoney = $vFraction * $aMoney;
+  $newItems[$count]['voters'][$key]['money'] = $vMoney * $mult;
+  $newItems[$count]['voters'][$key]['percent'] = $newItems[$count]['voters'][$key]['percent'] / 100;
+  $key++;
+ }
 				
 				$nT = str_replace("T"," ",$item["created"]);
 				$nT = strtotime($nT);
@@ -242,16 +274,10 @@ $newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_va
 $count++;
 }
 
-$newItems['total'] = $total_price;
+$newItems['total'] = $total_price * $mult;
 $newItems['usd'] = $this->getSBD();
+
 }
-
-
-     
-	
-
-
-
 
 
 return $newItems;

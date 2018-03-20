@@ -1,17 +1,14 @@
 <div id="particles-js"></div>
 <div class="main-akin">
 	<div class="akin-newsletter">
-		<h1><?=$lang['Name'];?></h1>
-		<img src="views/pages/assets/images/mk.png" style="margin-left: 200px;" alt="">
-		<form action="" >
-			<input type="text" name="username" required="" placeholder="<?=$lang['home_placeholder'];?>" />
-			<div class="subsc-w3l">
-				<input type="submit" value="<?=$lang['home_btnv'];?>" />
+		<h1>Steem Payout Checker</h1>
+		<img src="views/pages/assets/images/mk.png" alt="">
+		<div class="subsc-w3l"><form action="" >
+			<input type="text" style="width: 100%;" name="username" required="" placeholder="steem username" />
 			</div>
-			<div class="clear"></div>
 		</form>
+		<br/>
+		<p align="center" style="margin: 10px 3px 3px 193px;"><span> &copy; 2018 Designed By</span> <a href="http://steemit.com/@akintunde">@akintunde</a></p>
 	</div>
-	<div class="footer-w3l">
-		<p class="agileinfo" style="margin-left: 110px;"> <?=$lang['codedby'];?> <a href="http://steemit.com/@akintunde">@akintunde</a><?=$lang['designby'];?>  <a href="http://w3layouts.com">W3layouts</a></p>
-	</div>
+		
 </div>
