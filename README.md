@@ -8,7 +8,7 @@
 **Major Dependency:** Steemjs API<br/>
 **License:** APACHE LICENSE <br/>
 **License URI:** https://www.apache.org/licenses/LICENSE-2.0 <br/>
-**APP Address:** steem.com.ng <br/>
+**APP Address:** steempayout.com <br/>
 
 ## Short Summary:
 This script calculates the pending payout of steem blockchain users.It can tested in the app address provided above.
@@ -38,6 +38,7 @@ The htaccess also locks the index page to index.php<br/>
 2. Copy to your server  www (or htdocs) folder
 3. That's it 
 4. Just view from your server domain name (or from localhost if you are in a local environment)
+5. You are advised to place `sbd.php`, `steem.php` and `curr.php` on cron jobs depending on the real time you desire
 
 
 ## Changelog
