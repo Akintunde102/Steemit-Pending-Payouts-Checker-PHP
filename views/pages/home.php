@@ -7,7 +7,6 @@
 			<input type="text" style="width: 100%;" name="username" required="" placeholder="steem username" />
 			</div>
 		</form>
-		<br/>
 		<p align="center" style="margin: 10px 3px 3px 193px;"><span> &copy; 2018 Designed By</span> <a href="http://steemit.com/@akintunde">@akintunde</a></p>
 	</div>
 		

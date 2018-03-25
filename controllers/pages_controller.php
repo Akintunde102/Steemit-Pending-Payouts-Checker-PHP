@@ -15,6 +15,8 @@
 	   $site_name = $b->site_name;
 	   $username = $b->username;
 	   $blogs = $b->processBlogData();
+	  
+	   
 	   
 	   $comments = $b->processCommentData();
 	   
@@ -24,6 +26,14 @@
 	   $total = $blogs['total'] + $comments['total']; 
 	   
 	   $ext = $blogs[0]['b_ext'];
+	   
+	    
+	 $b->joinVoters(); //join voters
+	   
+	   $varrayW = $b->tcvW; //by Worth
+	   $varrayC = $b->tcvC; //by count
+	   $varrayA = $b->tcvA; //alphabetically
+	   
 	   
 	   $steem_usd = $b->getSTEEM();
 	   $steem = ($total*$steem_usd)/$usd;
@@ -66,10 +76,10 @@
       require_once('views/posts/sbd.php');
     }
 	
-	public function print() {
+	public function display() {
        $b = new post;
 	  $p = trim($_GET['print']);
-	$b->print($p);
+	$b->display($p);
 	  // require_once('views/posts/print.php');
     }
 

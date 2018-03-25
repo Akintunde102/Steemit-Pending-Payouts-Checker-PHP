@@ -2,8 +2,9 @@
 class post {
     
     public function __construct() {
+        //error_reporting(0);	
 		
-		  if (!empty($_GET['username'])){ $username = $_GET["username"];}
+		  if (!empty($_GET['username'])){ $username = trim($_GET["username"]);}
 	else if (!empty($_GET['print'])){ $username = $_GET["print"]; @$x = $_GET["x"];}
 	
 $username = str_replace('@', '', $username);
@@ -19,7 +20,6 @@ global $lang,$site_name;
 
 	
 	Public function getPicture() {
-	
 $url = 'https://api.steemjs.com/get_accounts?names[]=%5B%22'.$this->username.'%22%5D';
 $json= file_get_contents($url);
 $data = json_decode($json,true);
@@ -44,6 +44,8 @@ return $data;
 	}
 
  public  function processBlogData() {
+	 //To get cummulative voting worth 
+$varray = array();
 	$newItems = array();
 $total_price =0;
 $count = 0;
@@ -136,7 +138,23 @@ foreach($newItems[$count]['voters'] as $csm)
 	 $vMoney = $vFraction * $aMoney;
   $newItems[$count]['voters'][$key]['money'] = $vMoney * $mult;
     $newItems[$count]['voters'][$key]['percent'] = $newItems[$count]['voters'][$key]['percent'] / 100;
-  $key++;
+ 
+  $vname =$newItems[$count]['voters'][$key]['voter'];
+ 
+
+ if (array_key_exists($vname,$varray)){
+$varray[$vname]['amount'] = $varray[$vname]['amount'] + $vMoney * $mult;  
+$varray[$vname]['count'] = $varray[$vname]['count'] + 1;  
+ }
+ else {
+$varray[$vname]['name'] =  $newItems[$count]['voters'][$key]['voter'];
+$varray[$vname]['amount'] = $vMoney * $mult;
+$varray[$vname]['count'] = 1;
+$varray[$vname]['type'] = 'cumVote';
+ }
+ 
+
+ $key++; 
  }
  
 				
@@ -153,18 +171,34 @@ $newItems[$count]['pending_payout_value'] = $newItems[$count]['pending_payout_va
 $newItems[$count]['b_ext'] = $ext;				
 	
 	}
-		
 $count++;
 }
 
 $newItems['total']  = $total_price * $mult;
 $newItems['usd'] = $this->getSBD();
+
+
+$this->PVA = $varray;
+
+
+
 }
 
 return $newItems;
     }
 
-	private function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
+	//Returns a value instead
+	Private function array_sort_by_columnR(&$arr, $col, $dir = SORT_DESC) {
+    $sort_col = array();
+    foreach ($arr as $key=>$row) {
+        $sort_col[$key] = $row[$col];
+    }
+array_multisort($sort_col, $dir, $arr);
+return $arr;
+}
+
+
+	Private function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     $sort_col = array();
     foreach ($arr as $key=> $row) {
         $sort_col[$key] = $row[$col];
@@ -173,6 +207,10 @@ array_multisort($sort_col, $dir, $arr);
 }
 	
  public  function processCommentData() {
+	 
+	  //To get cummulative voting worth 
+$varray = array();
+
 	$newItems = array();
 $total_price =0;
 $count = 0;
@@ -256,6 +294,20 @@ foreach($newItems[$count]['voters'] as $csm)
 	 $vMoney = $vFraction * $aMoney;
   $newItems[$count]['voters'][$key]['money'] = $vMoney * $mult;
   $newItems[$count]['voters'][$key]['percent'] = $newItems[$count]['voters'][$key]['percent'] / 100;
+  
+    $vname =$newItems[$count]['voters'][$key]['voter'];
+  
+   if (array_key_exists($vname,$varray)){
+$varray[$vname]['amount'] = $varray[$vname]['amount'] + $vMoney * $mult;  
+$varray[$vname]['count'] = $varray[$vname]['count'] + 1;  
+ }
+ else {
+$varray[$vname]['name'] =  $newItems[$count]['voters'][$key]['voter'];
+$varray[$vname]['amount'] = $vMoney * $mult;
+$varray[$vname]['count'] = 1;
+$varray[$vname]['type'] = 'cumVote';
+ }
+ 
   $key++;
  }
 				
@@ -277,12 +329,54 @@ $count++;
 $newItems['total'] = $total_price * $mult;
 $newItems['usd'] = $this->getSBD();
 
+$this->CVA = $varray;
+
 }
 
 
 return $newItems;
     }
 	
+	
+	
+	Public function joinVoters(){
+
+		$n = $this->PVA;
+		
+		foreach ($n as $p){
+			
+			
+			
+			foreach ($this->CVA as $c){
+					$name = $c['name'];
+				if ($p['name'] == $c['name']){	
+			$n[$name]['name'] = $c['name'];
+			$n[$name]['amount'] = $p['amount'] + $c['amount'];
+			$n[$name]['count'] = $p['count'] + $c['count'];	
+			}
+				else {
+				 if (!array_key_exists($c['name'],$n)){
+				$n[$name]['name'] = $c['name'];
+			$n[$name]['amount'] = $c['amount'] ;
+			$n[$name]['count'] =  $c['count'];		
+				}
+				}
+					
+				}
+			
+			}
+			
+		$this->tcv = $n; //total cummulative voters
+		
+		
+
+$this->tcvA = $this->array_sort_by_columnR($this->tcv, 'name', SORT_ASC);
+$this->tcvW = $this->array_sort_by_columnR($this->tcv, 'amount');
+$this->tcvC = $this->array_sort_by_columnR($this->tcv, 'count');
+		
+		
+		
+	}
 	
 	Public function fancy_date($timestamp) 
 	{
@@ -336,7 +430,7 @@ $sbdfile = fopen("sbd.txt", "w") or die("Unable to open file!");
 fwrite($sbdfile, $sbdDetails);
 	fclose($sbdfile);}
 
-Public function print($p){
+Public function display($p){
 require 'src/PHPImage.php';
 $lang = $this->lang;
 $bg = 'pro/image.jpg';
