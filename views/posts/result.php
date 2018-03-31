@@ -34,12 +34,18 @@
     <div class="dropdown-menu">
 
 <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username']?>">SBD</a>  
+<a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=btc'?>">BTC</a> 
+<a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=eth'?>">ETH</a> 
 <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=ngn'?>">NAIRA</a> 
  <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=dollars'?>">DOLLARS</a>  
  <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=eur'?>">EUR</a>
  <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=gbp'?>">POUNDS</a> 
  <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=zar'?>">RANDS</a> 
- <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=ghs'?>">CEDIS</a>
+ <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=ghs'?>">CEDIS</a>  
+ <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=aed'?>">AED</a>
+ <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=inr'?>">INR</a> 
+ <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=pkr'?>">PKR</a> 
+ <a class="dropdown-item" href="http://<?=$site_name.$_SERVER['PHP_SELF'].'?username='.$_GET['username'].'&curr=php'?>">PHP</a>
     </div>
 </div>
 
@@ -65,11 +71,17 @@
 
     <div class="dropdown-menu">
        <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username?>">[DOLLARS]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=BTC'?>" style="font-size: 20px;">BTC</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ETH'?>" style="font-size: 20px;">ETH</a>
 <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=NGN'?>" style="font-size: 20px;">[NGN]</a>
 <a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=EUR'?>" style="font-size: 20px;">[EURO]</a>
 <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=GBP'?>" style="font-size: 20px;">[POUNDS]</a>
 <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=CAD'?>" style="font-size: 20px;">[C$]</a>
 <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ZAR'?>" style="font-size: 20px;">[RAND]</a>
+<a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=AED'?>" style="font-size: 20px;">[DIRHAMS]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=INR'?>" style="font-size: 20px;">[INR]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PKR'?>" style="font-size: 20px;">[PKR]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PHP'?>" style="font-size: 20px;">[PHP]</a>
     </div>
 </div>
 
@@ -80,11 +92,17 @@
 
     <div class="dropdown-menu">
        <span class="dropdown-item"><?='$'. $usd.'/SBD'?></span>
+       <span class="dropdown-item"><?='BTC'. $BTC_R.'/SBD'?></span>
+       <span class="dropdown-item"><?='ETH'. $ETH_R.'/SBD'?></span>
        <span class="dropdown-item"><?='₦'. $NGN_R.'/SBD'?></span>
        <span class="dropdown-item"><?='€'. $EUR_R.'/SBD'?></span>
        <span class="dropdown-item"><?='GH₵'. $GHS_R.'/SBD'?></span>
        <span class="dropdown-item"><?='R'. $ZAR_R.'/SBD'?></span>
        <span class="dropdown-item"><?='C$'. $CAD_R.'/SBD'?></span>
+       <span class="dropdown-item"><?='AED'. $AED_R.'/SBD'?></span>
+       <span class="dropdown-item"><?='₹'. $INR_R.'/SBD'?></span>
+       <span class="dropdown-item"><?='Rs'. $PKR_R.'/SBD'?></span>
+       <span class="dropdown-item"><?='₱'. $PHP_R.'/SBD'?></span>
     </div>
 </div>
   
@@ -96,6 +114,106 @@
   
 		</form>
 
+
+		
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-light" data-toggle="modal" data-target="#appreciate" >
+    Appreciate Voters
+</button>
+
+
+
+<!-- Modal -->
+<div class="modal fade" style="font-size: 15px;" id="appreciate" tabindex="-1" role="dialog" aria-labelledby="appreciateLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><center>Appreciation Box</center></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+			<form action="memo.php" autocomplete="on" method="POST"> 
+<!--			
+			<div class="form-group">
+<label for="sel7" >FROM(Your Username)</label>
+<input class="yeah form-control" id="sel7" style="
+    padding: 5px 12px 10px 20px;
+    text-transform: uppercase;font-size: 18px;border: solid 2px #000;border-radius: 8px;
+   font-weight: normal;" name="from"  placeholder="sender's username" value="<?=$username?>" required="true"/>
+</div>
+--->
+				<div class="form-group">
+<label for="sel2">TO</label>
+
+<select class="yeah form-control" id="sel2" style="
+    padding: 5px 12px 10px 20px;
+  font-size: 18px;border: solid 2px #000;border-radius: 8px;
+   font-weight: normal;" name="to" required="true">
+<option value="">Choose Voter </option>
+
+   <?php $n = 0; foreach($varrayW as $va) {  
+	if ($n == 0){$copyA = '@'.$va['name'].'  : '.round($va['amount'],6)." $ext ,  ".$va['count'].' vote(s)';}
+	else {$copyA .= '<br> @'.$va['name'].'  : '.round($va['amount'],6)." $ext ,  ".$va['count'].' vote(s)';}
+	
+	
+	?>
+       
+
+
+<option value="<?=$va['name']?>"><?=$va['name']?>,  <?=round($va['amount'],6)?> <?=$ext?>,  <?=$va['count']?> times</option>  
+ 	
+		
+<?php $n++; } ?>
+</select>
+</div>
+
+
+<div class="form-group">
+<label for="sel3">Message/Memo</label>
+<textarea class="yeah form-control" rows="25" id="sel3" style="
+    padding: 5px 12px 10px 20px;
+    font-size: 18px;border: solid 2px #000;border-radius: 8px;
+   font-weight: normal;" name="memo" maxlength="2000" placeholder="Memo e.g. thanks for your support" required="true">THANKS FOR THE UPVOTE SUPPORT</textarea>
+</div>
+
+<div class="form-group">
+<label for="sel4" >Amount (make sure this is in 3 decimal places)</label>
+<input class="yeah form-control" id="sel4" style="
+    padding: 5px 12px 10px 20px;
+   font-size: 14px;border: solid 2px #000;border-radius: 8px;
+   font-weight: normal;" name="amount" placeholder="amount e.g 0.001" value="0.001" required="true"/>
+</div>
+
+<div class="form-group">
+<label for="sel5">Amount TYPE</label>
+<select class="yeah form-control" name="type" required="true"
+id="sel2" style="
+    padding: 5px 12px 10px 20px;
+    font-size: 18px;border: solid 2px #000;border-radius: 8px;text-transform: uppercase;
+   font-weight: normal;" id="voter">
+<option value="sbd">SBD</option>
+<option value="steem">STEEM</option>
+</select>
+</div>
+
+                <div class="text-center mt-4">
+                    <input class="btn btn-cyan mt-1" name="mforms"type="submit" value="send" />
+                </div>
+            </div>
+</form>
+    </div>
+         
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+     
+    </div>
+</div>
 
 		
 		
@@ -137,15 +255,15 @@
                      
 	<?php $n = 0; foreach($varrayC as $va) {  
 	
-	if ($n == 0){$copyC = '@'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
-	else {$copyC .= '<br> @'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
+	if ($n == 0){$copyC = '@'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
+	else {$copyC .= '<br> @'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
 	
 	?>
        
 
 
 
-<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],2)?> <?=$ext?> </span>, <?=round($va['count'],2)?> times</a>  
+<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],6)?> <?=$ext?> </span>, <?=round($va['count'],2)?> times</a>  
  	
 		
 <?php $n++; } ?>
@@ -181,15 +299,15 @@
                                 
 	<?php $n = 0; foreach($varrayW as $va) {  
 	
-	if ($n == 0){$copyW = '@'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
-	else {$copyW .= '<br> @'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
+	if ($n == 0){$copyW = '@'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
+	else {$copyW .= '<br> @'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
 	
 	?>
        
 
 
 
-<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],4)?> <?=$ext?> </span>, <?=round($va['count'],2)?> times</a>  
+<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],6)?> <?=$ext?> </span>, <?=round($va['count'],2)?> times</a>  
  	
 		
 <?php $n++; } ?>
@@ -220,8 +338,8 @@
        <p>  
                                 
 	<?php $n = 0; foreach($varrayA as $va) {  
-	if ($n == 0){$copyA = '@'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
-	else {$copyA .= '<br> @'.$va['name'].': '.round($va['amount'],4).'sbd ,'.$va['count'].' votes';}
+	if ($n == 0){$copyA = '@'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
+	else {$copyA .= '<br> @'.$va['name'].': '.round($va['amount'],6)." $ext ,".$va['count'].' vote(s)';}
 	
 	
 	?>
@@ -229,7 +347,7 @@
 
 
 
-<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],2)?> <?=$ext?> </span>,<span id="count"> <?=$va['count']?> times</span></a>  
+<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$va['name']?>"> <span style="color: blue;"><?=$va['name']?></span>, <span style="color: green;"> <?=round($va['amount'],6)?> <?=$ext?> </span>,<span id="count"> <?=$va['count']?> times</span> </a> 
  	
 		
 <?php $n++; } ?>
@@ -263,7 +381,7 @@
 
 </div>
 <div align="center" style="background: white;color: red;font-size: 23px;padding-left: 20px;border-bottom: 2px #000 solid;" class="d-flex justify-content-center"> <div class="p-2 d-inline bg-success text-white">
-  TOTAL PAYOUT: <?=round($total,3)?> <?=$ext?> </div>&nbsp;&nbsp; &nbsp;&nbsp;  <div class="p-2 d-inline bg-success text-white"> <?=$lang['PostPayout'];?>: <?=round($bTotal,2)?> <?=$ext?> </div>&nbsp;&nbsp; &nbsp;&nbsp;  <div class="p-2 d-inline bg-success text-white"><?=$lang['CommentPayout'];?> : <?=round($cTotal,2)?> <?=$ext?> </div>
+  TOTAL PAYOUT: <?=round($total,6)?> <?=$ext?> </div>&nbsp;&nbsp; &nbsp;&nbsp;  <div class="p-2 d-inline bg-success text-white"> <?=$lang['PostPayout'];?>: <?=round($bTotal,6)?> <?=$ext?> </div>&nbsp;&nbsp; &nbsp;&nbsp;  <div class="p-2 d-inline bg-success text-white"><?=$lang['CommentPayout'];?> : <?=round($cTotal,6)?> <?=$ext?> </div>
 </div>
 
 
@@ -315,7 +433,7 @@
 
 
 
-<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$v['voter']?>"> <span style="color: blue;"><?=$v['voter']?></span>, <span style="color: green;"> <?=round($v['money'],2)?> <?=$b["b_ext"]?> </span> , <span style="color: red;"><?=$v['percent']. '%'?></span></a>  
+<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$v['voter']?>"> <span style="color: blue;"><?=$v['voter']?></span>, <span style="color: green;"> <?=round($v['money'],6)?> <?=$b["b_ext"]?> </span> , <span style="color: red;"><?=$v['percent']. '%'?></span></a>  
  	
 		
 <?php $n++; } ?>
@@ -342,7 +460,7 @@
 <thead>		
 		<tr>
 <th colspan="8" sciope="colgroup">		
-		<center style="background: #fff;"><h3 style="color: #000;"> <!---<div style="background: white;color: red;font-size: 23px;padding-left: 20px;"><?=$lang['TotalPayout'];?> <?=round($total,3)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 2)?> @ $<?=$usd?></span></div> ---> <?=$lang['CommentPayout'];?> : <?=round($cTotal,2)?> <?=$ext?></div></h3></center>
+		<center style="background: #fff;"><h3 style="color: #000;"> <!---<div style="background: white;color: red;font-size: 23px;padding-left: 20px;"><?=$lang['TotalPayout'];?> <?=round($total,6)?> SBD <span style="color: #000;font-size: 23px;padding-left: 20px;">$<?=round($total * $usd, 6)?> @ $<?=$usd?></span></div> ---> <?=$lang['CommentPayout'];?> : <?=round($cTotal,6)?> <?=$ext?></div></h3></center>
 		 </th>
 		 </tr>
 		 </thead>
@@ -381,7 +499,7 @@
        
 
 
-<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$v['voter']?>"> <span style="color: blue;"><?=$v['voter']?></span>, <span style="color: green;"> <?=round($v['money'],2)?> <?=$ext?> </span> , <span style="color: red;"><?=$v['percent']. '%'?></span></a>  
+<a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$v['voter']?>"> <span style="color: blue;"><?=$v['voter']?></span>, <span style="color: green;"> <?=round($v['money'],6)?> <?=$ext?> </span> , <span style="color: red;"><?=$v['percent']. '%'?></span></a>  
  		
 		
 <?php $n++; } ?>

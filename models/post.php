@@ -2,7 +2,7 @@
 class post {
     
     public function __construct() {
-        //error_reporting(0);	
+    error_reporting(0);	
 		
 		  if (!empty($_GET['username'])){ $username = trim($_GET["username"]);}
 	else if (!empty($_GET['print'])){ $username = $_GET["print"]; @$x = $_GET["x"];}
@@ -30,7 +30,8 @@ return $img;
 	}
 
 Public function getBlogData() {
-$url = 'https://api.steemjs.com/get_discussions_by_blog?query={"tag":"'.$this->username.'","limit":"100"}';
+    $query = urlencode('{"tag":"'.$this->username.'", "limit": "100"}');
+$url = 'https://api.steemjs.com/get_discussions_by_blog?query='.$query;
 $json= file_get_contents($url);
 $data = json_decode($json,true);
 return $data;
@@ -55,6 +56,8 @@ $data = $this->getBlogData();
 
   $usd = $this->getSBD();
 $curr = $this->getCURR();	  
+$eth = $this->getETH();	  
+$btc = $this->getBTC();	  
 	
 if (!empty($_GET['curr'])){	
 if ($_GET['curr'] == 'eur'){$mult = round($curr["EUR"]*$usd,2); $ext = 'EUR'; }
@@ -64,6 +67,14 @@ else if ($_GET['curr'] == 'ngn'){$mult = round($curr["NGN"]*$usd,2); $ext = 'NAI
 else if ($_GET['curr'] == 'cad'){$$mult = round($curr["CAD"]*$usd,2); $ext = 'C$';}
 else if ($_GET['curr'] == 'gbp'){$mult = round($curr["GBP"]*$usd,2); $ext = 'POUNDS';}
 else if ($_GET['curr'] == 'dollars'){$mult = round($usd,2); $ext = 'DOLLAR';}
+
+else if ($_GET['curr'] == 'btc'){$mult = round($usd/$btc,6); $ext = 'BTC';}
+else if ($_GET['curr'] == 'eth'){$mult = round($usd/$eth,6); $ext = 'ETH';}
+
+else if ($_GET['curr'] == 'aed'){$mult = round($curr["AED"]*$usd,2); $ext = 'DIRHAMS';}
+else if ($_GET['curr'] == 'inr'){$mult = round($curr["INR"]*$usd,2); $ext = 'Indian Rupees';}
+else if ($_GET['curr'] == 'pkr'){$mult = round($curr["PKR"]*$usd,2); $ext = 'Pakistani Rupees';}
+else if ($_GET['curr'] == 'php'){$mult = round($curr["PHP"]*$usd,2); $ext = 'Philippine Pesos';}
 }
 else {$mult = 1; $ext = 'sbd';}
 
@@ -218,9 +229,10 @@ $username = $this->username;
 $data = $this->getCommentData();
 
 
-
   $usd = $this->getSBD();
 $curr = $this->getCURR();	  
+$eth = $this->getETH();	  
+$btc = $this->getBTC();	  
 	
 if (!empty($_GET['curr'])){	
 if ($_GET['curr'] == 'eur'){$mult = round($curr["EUR"]*$usd,2); $ext = 'EUR'; }
@@ -230,6 +242,14 @@ else if ($_GET['curr'] == 'ngn'){$mult = round($curr["NGN"]*$usd,2); $ext = 'NAI
 else if ($_GET['curr'] == 'cad'){$$mult = round($curr["CAD"]*$usd,2); $ext = 'C$';}
 else if ($_GET['curr'] == 'gbp'){$mult = round($curr["GBP"]*$usd,2); $ext = 'POUNDS';}
 else if ($_GET['curr'] == 'dollars'){$mult = round($usd,2); $ext = 'DOLLAR';}
+
+else if ($_GET['curr'] == 'btc'){$mult = round($usd/$btc,6); $ext = 'BTC';}
+else if ($_GET['curr'] == 'eth'){$mult = round($usd/$btc,6); $ext = 'ETH';}
+
+else if ($_GET['curr'] == 'aed'){$mult = round($curr["AED"]*$usd,2); $ext = 'DIRHAMS';}
+else if ($_GET['curr'] == 'inr'){$mult = round($curr["INR"]*$usd,2); $ext = 'Indian Rupees';}
+else if ($_GET['curr'] == 'pkr'){$mult = round($curr["PKR"]*$usd,2); $ext = 'Pakistani Rupees';}
+else if ($_GET['curr'] == 'php'){$mult = round($curr["PHP"]*$usd,2); $ext = 'Philippine Pesos';}
 }
 else {$mult = 1; $ext = 'sbd';}
 	   
@@ -256,11 +276,8 @@ foreach ($data as $item) {
 			if ($username == $item["author"]){
 				
 				
-				if ($item["parent_permlink"] == 'utopian-io'){
-					$each_pay  = ($price  * 0.375) - ($price * 0.1125); 
-					$total_price = $total_price + $each_pay;
-					}
-				else {$each_pay  = $price   * 0.375;
+				
+				$each_pay  = $price   * 0.375;
 						$total_price =$total_price + $each_pay;
 				}
 				
@@ -331,7 +348,7 @@ $newItems['usd'] = $this->getSBD();
 
 $this->CVA = $varray;
 
-}
+
 
 
 return $newItems;
@@ -409,6 +426,20 @@ return round($steem[0]["price_usd"],3);
 	}
 	
 	
+	Public function getETH(){
+$ethDetails = file_get_contents('eth.txt');
+$eth = json_decode($ethDetails, true); // decode the JSON feed
+return round($eth[0]["price_usd"],7);
+	}
+	
+	
+	Public function getBTC(){
+$btcDetails = file_get_contents('btc.txt');
+$btc = json_decode($btcDetails, true); // decode the JSON feed
+return round($btc[0]["price_usd"],7);
+	}
+	
+	
 	
 	Public function getCURR(){
 $currDetails = file_get_contents('curr.txt');
@@ -420,6 +451,10 @@ $ret['GBP'] = round($curr["quotes"]["USDGBP"],3);
 $ret['ZAR'] = round($curr["quotes"]["USDZAR"],3);
 $ret['GHS'] = round($curr["quotes"]["USDGHS"],3);
 $ret['CAD'] = round($curr["quotes"]["USDCAD"],3);
+$ret['AED'] = round($curr["quotes"]["USDAED"],3);
+$ret['INR'] = round($curr["quotes"]["USDINR"],3);
+$ret['PKR'] = round($curr["quotes"]["USDPKR"],3);
+$ret['PHP'] = round($curr["quotes"]["USDPHP"],3);
 return $ret;
 	}
 	
@@ -448,6 +483,20 @@ $time = date("M d, Y h:i:s");
 	   $bTotal = $blogs['total'];
 	   $total = round($blogs['total'] + $comments['total'],2); 
 	   $tusd = round($total * $usd,2); 
+	   
+	   $eth = $this->getETH();
+	    $ETH_R = round($usd/$eth,6);
+	   $ETH = round($ETH_R*$total,6);
+	   $ETH = number_format($ETH, 6); 
+	   
+	   $btc = $this->getBTC();
+	    $BTC_R = round($usd/$btc,6);
+	   $BTC = round($BTC_R*$total,6);
+	   $BTC = number_format($BTC, 6);
+	   
+	
+	   
+	   
 	   $curr = $this->getCURR();
 	   
 	   $EUR_R = round($curr["EUR"]*$usd,2);
@@ -473,6 +522,25 @@ $time = date("M d, Y h:i:s");
 	   $GBP_R = round($curr["GBP"]*$usd,2);
 	   $GBP = round($usd*$curr["GBP"]*$total,2);
 	   $GBP = number_format($GBP, 2);
+	   
+	   $AED_R = round($curr["AED"]*$usd,2);
+	   $AED = round($usd*$curr["AED"]*$total,2);
+	   $AED = number_format($AED, 2);
+	   
+	   $INR_R = round($curr["INR"]*$usd,2);
+	   $INR = round($usd*$curr["INR"]*$total,2);
+	   $INR = number_format($INR, 2);
+	   
+	   $PKR_R = round($curr["PKR"]*$usd,2);
+	   $PKR = round($usd*$curr["PKR"]*$total,2);
+	   $PKR = number_format($PKR, 2);
+	   
+	   $PHP_R = round($curr["PHP"]*$usd,2);
+	   $PHP = round($usd*$curr["PHP"]*$total,2);
+	   $PHP = number_format($PHP, 2);
+	   
+	   
+	   
 	   
 	   unset($blogs['total']); unset($comments['total']);
 	   unset($blogs['usd']); unset($comments['usd']);
@@ -508,7 +576,7 @@ $time = date("M d, Y h:i:s");
 	$image->text('Valid As At '.$time, array('fontSize' => 15, 'x' => 10, 'y' => 10));	
 
 	$image->rectangle(0, 40, 700, 45, array(28, 20, 30), 1);
-	$image->text('Printed from Steem.Com.Ng', array('fontSize' => 15, 'x' => 440, 'y' => 10));
+	$image->text('SteemPayout.Com', array('fontSize' => 15, 'x' => 440, 'y' => 10));
 	
 	$image->setTextColor(array(255,255,255));
 	$image->text(ucfirst($username).$lang['ImgWeekPay'], array('fontSize' => 30, 'x' => 110, 'y' =>50));
@@ -530,10 +598,49 @@ $time = date("M d, Y h:i:s");
 	else if ($x == 'GHS'){$image->text('~ '.$GHS.' CEDI', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
 	else if ($x == 'CAD'){$image->text('~ '.$CAD.' CAD', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
 	else if ($x == 'GBP'){$image->text('~ '.$GBP.' POUNDS', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'AED'){$image->text('~ '.$AED.' DIRHAMS', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'INR'){$image->text('~ '.$INR.' INR', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'PKR'){$image->text('~ '.$PKR.' PKR', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'PHP'){$image->text('~ '.$PHP.' PHP', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'ETH'){$image->text('~ '.$ETH.' ETH', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
+	else if ($x == 'BTC'){$image->text('~ '.$BTC.' BTC', array('fontSize' => 23, 'x' => 20, 'y' => 260));}
 	
 	if (empty($x)){$x = 'none';}
 	$fn = $p.md5($x.time());
 	$image->show($fn);
+  }
+  
+  Public function sendmemo(){
+	
+	  if (!empty($_POST['mforms'])){
+	  //https://steemconnect.com/sign/transfer?to=fabien&amount=1.000%20STEEM&memo=Hello%20World!&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fdemo%2Ftransfer-complete
+	  
+	  if (!empty($_POST['to']  && $_POST['amount'] && $_POST['type'] && $_POST['memo'])){
+	  
+	  $to = trim($_POST['to']);
+	 // $from = trim($_POST['from']);
+	  
+	  if (is_numeric(trim($_POST["amount"]))){
+		  
+		  $amount = number_format((float)$_POST['amount'], 3, '.', '');
+		  
+		   if ($_POST["amount"] < 0.001){echo 'The least Amount is 0.001, You can not send lower<br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit;}
+		   
+		  }
+	  else {echo 'Amount Sent Must be a Number <br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit; }
+	  
+	 
+	  $type = strtoupper($_POST['type']);
+	  $memo = urlencode($_POST['memo']);
+	  $redirect = urlencode($this->site_name);
+	  $url ='https://steemconnect.com/sign/transfer?to='.$to.'&amount='.$amount.'%20'.$type.'&memo='.$memo.'&redirect_uri='.$redirect;
+	  
+	  
+	  header("Location: $url");
+	  }
+	  }
+	  exit;
+	  
   }
   }
 

@@ -474,17 +474,13 @@ tr:nth-child(even) td a {color: #000;}
 tr:nth-child(even) {background: #fff; color: #000;  border-bottom: solid 1px rgba(255,255,255,0.1);}
 tr:nth-child(odd) {background: #000; color: #fff;  border-bottom: solid 1px rgba(255,255,255,0.1);}
 
-.dropdown-menu{ max-height:200px;
-          overflow-y:auto;}
+
 		  
 .dropdown-menu2{ max-height:200px;
           overflow-y:auto;}
 
 		  
-		  
-		  
-		  
-		  
+	
 		  
 		  
 		  

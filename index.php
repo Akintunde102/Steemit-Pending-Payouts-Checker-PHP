@@ -7,12 +7,11 @@ include('models/post.php');
   }
   else if (isset($_GET['username'])){
 	 $controller = 'pages';
-    $action     = 'results'; 
-	  
+    $action     = 'results';   
   }
   else if (isset($_GET['print'])){
 	 $controller = 'pages';
-    $action     = 'print'; 
+    $action     = 'display'; 
 	  
   }
   else if (isset($_GET['sbd'])){

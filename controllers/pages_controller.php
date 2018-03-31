@@ -39,6 +39,8 @@
 	   $steem = ($total*$steem_usd)/$usd;
 	   $steem = round($steem,2);
 	   $curr = $b->getCURR();
+	   $eth = $b->getETH();
+	   $btc = $b->getBTC();
 	   
 	   $EUR_R = round($curr["EUR"]*$usd,2);
 	   $EUR = round($usd*$curr["EUR"]*$total,2);
@@ -47,6 +49,14 @@
 	   $NGN_R = round($curr["NGN"]*$usd,2);
 	   $NGN = round($usd*$curr["NGN"]*$total,2);
 	   $NGN = number_format($NGN, 2);
+	   
+	   $ETH_R = round($usd/$eth,6);
+	   $ETH = round($ETH_R*$total,6);
+	   $ETH = number_format($ETH, 6);
+	   
+	   $BTC_R = round($usd/$btc,6);
+	   $BTC = round($BTC_R*$total,6);
+	   $BTC = number_format($BTC, 6);
 	    
 	   $ZAR_R = round($curr["ZAR"]*$usd,2);
 	   $ZAR = round($usd*$curr["ZAR"]*$total,2);
@@ -63,6 +73,22 @@
 	   $GBP_R = round($curr["GBP"]*$usd,2);
 	   $GBP = round($usd*$curr["GBP"]*$total,2);
 	   $GBP = number_format($GBP, 2);
+	   
+	   $AED_R = round($curr["AED"]*$usd,2);
+	   $AED = round($usd*$curr["AED"]*$total,2);
+	   $AED = number_format($AED, 2);
+	   
+	   $INR_R = round($curr["INR"]*$usd,2);
+	   $INR = round($usd*$curr["INR"]*$total,2);
+	   $INR = number_format($INR, 2);
+	   
+	   $PKR_R = round($curr["PKR"]*$usd,2);
+	   $PKR = round($usd*$curr["PKR"]*$total,2);
+	   $PKR = number_format($PKR, 2);
+	   
+	   $PHP_R = round($curr["PHP"]*$usd,2);
+	   $PHP = round($usd*$curr["PHP"]*$total,2);
+	   $PHP = number_format($PHP, 2);
 	   
 	   unset($blogs['total']); unset($comments['total']);
 	   unset($blogs['usd']); unset($comments['usd']);

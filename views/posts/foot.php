@@ -3,9 +3,9 @@
 
 <script type="application/x-javascript">
 
-document.body.innerHTML = document.body.innerHTML.replace(/1 times/g, 'once(1)');	
-document.body.innerHTML = document.body.innerHTML.replace(/2 times/g, 'twice(2)');	
-document.body.innerHTML = document.body.innerHTML.replace(/3 times/g, 'thrice(3)');	
+document.body.innerHTML = document.body.innerHTML.replace(/\s1 times/g, ' once(1)');	
+document.body.innerHTML = document.body.innerHTML.replace(/\s2 times/g, ' twice(2)');	
+document.body.innerHTML = document.body.innerHTML.replace(/\s3 times/g, ' thrice(3)');	
 </script>	
 <script>
 function myFunctionone() {
