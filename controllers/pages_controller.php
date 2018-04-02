@@ -3,8 +3,13 @@
     public function home() {
 	include('models/lang.php');
 	include('views/posts/head.php');
+	 $b = new post;
+	   $site_name = $b->site_name;
+	   $username = $b->username;
       require_once('views/pages/home.php');
+	  require_once('what-you-need-to-know.html');
 	  	include('views/posts/foot.php');
+		
     }
 	
 	public function results() {
@@ -15,8 +20,6 @@
 	   $site_name = $b->site_name;
 	   $username = $b->username;
 	   $blogs = $b->processBlogData();
-	  
-	   
 	   
 	   $comments = $b->processCommentData();
 	   
@@ -92,8 +95,11 @@
 	   
 	   unset($blogs['total']); unset($comments['total']);
 	   unset($blogs['usd']); unset($comments['usd']);
+	   
+	
       require_once('views/posts/result.php');
 	  include('views/posts/foot.php');
+	  require_once('what-you-need-to-know.html');
     }
 	
 	public function sbd() {

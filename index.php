@@ -1,5 +1,4 @@
 <?php
-
 include('models/post.php');
   if (isset($_GET['controller']) && isset($_GET['action'])) {
     $controller = $_GET['controller'];

@@ -2,6 +2,9 @@
 	
 		
 		<h1><?=$lang['Name'];?></h1>
+			<button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#need" >
+    What You Need to Know???
+</button>	
 		 <table  class="w3-table w3-striped w3-border" align="center" id="keywords"  >
 <thead>		
 		<tr>

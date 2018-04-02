@@ -4,5 +4,4 @@ $sbdDetails = file_get_contents('http://apilayer.net/api/live?access_key=7afc776
 $sbdfile = fopen("curr.txt", "w") or die("Unable to open file!");
 fwrite($sbdfile, $sbdDetails);
 	fclose($sbdfile);
-	
 	?>
