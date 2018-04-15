@@ -37,3 +37,4 @@ $lang['EnglishTranslate'] = 'Inglés';
 $lang['SpanishTranslate'] = 'Español';
 $lang['giver'] = 'Mayor dador';
 $lang['ExchangeRate'] = 'Exchange Rate';
+$lang['NeedToKnow'] = 'What You Need To Know';

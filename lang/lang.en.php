@@ -38,3 +38,4 @@ $lang['SpanishTranslate'] = 'SPANISH';
 $lang['giver'] = 'Highest Giver';
 $lang['Voterslist'] = 'Voter\'s  List';
 $lang['ExchangeRate'] = 'Exchange Rate';
+$lang['NeedToKnow'] = 'What You Need To Know';
