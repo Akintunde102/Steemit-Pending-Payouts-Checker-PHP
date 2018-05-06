@@ -2,7 +2,10 @@
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#" >STEEM PAYOUT CHECKER</a>
-        <a class="btn btn-primary" data-toggle="modal" data-target="#need">What You Need to Know</a>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#need" style="color: white;">What You Need to Know</a>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#appreciateATP" style="color: white;">Appreciate This Project</a>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#privacypolicy" style="color: white;">Policy</a>
+        <a class="btn btn-dark" data-toggle="modal" data-target="#telegram" style="color: white;">Telegram /Discord Channel</a>
       </div>
     </nav>
 	

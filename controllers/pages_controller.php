@@ -8,6 +8,9 @@
 	   $username = $b->username;
       require_once('views/pages/home.php');
 	  require_once('what-you-need-to-know.html');
+	  require_once('privacy_policy.html');
+	  require_once('memo2html.php');
+	  require_once('telegram.html');
 	  	include('views/posts/foot_home.php');
 		
     }
@@ -101,6 +104,10 @@
       require_once('views/posts/result.php');
 	  include('views/posts/foot.php');
 	  require_once('what-you-need-to-know.html');
+	  require_once('privacy_policy.html');
+	  require_once('telegram.html');
+	  require_once('memo2html.php');
+	  require_once('usergift.php');
     }
 	
 	public function sbd() {

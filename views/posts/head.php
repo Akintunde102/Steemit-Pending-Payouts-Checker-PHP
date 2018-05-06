@@ -10,23 +10,33 @@
 
    <title><?=$lang['Name']?></title>
 
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116553399-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116553399-1');
+</script>
+
     <!-- Bootstrap -->
-    <link href="https://steem.com.ng/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://steem.com.ng/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="https://steem.com.ng/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="https://steem.com.ng/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Datatables -->
-    <link href="https://steem.com.ng/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="https://steem.com.ng/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="https://steem.com.ng/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="https://steem.com.ng/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="https://steem.com.ng/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="./vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="https://steem.com.ng/build/css/custom.css" rel="stylesheet">
+    <link href="./build/css/custom.css" rel="stylesheet">
 	
 	
     <link rel="icon" href="views/pages/assets/images/favicon.png">

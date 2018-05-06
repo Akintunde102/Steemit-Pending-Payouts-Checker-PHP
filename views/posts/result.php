@@ -2,7 +2,7 @@
   <body class="nav-sm">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col menu_fixed">
+     <!--   <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.php" class="site_title"><i class="fa fa-play"></i> <span><?=$username;?></span></a>
@@ -21,26 +21,23 @@
                 <h2>Payout</h2> 
 				
               </div>
-			  -->
+			  
             </div>
-            <!-- /menu profile quick info -->
 
             <br />
-
-            <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
            
-          <!--      <ul class="nav side-menu">
+                <ul class="nav side-menu">
         
                       <li><a href="index.html" style="color: #000;">Dashboard</a></li>
                     </ul>
-					-->
+					
                   </li>
                 </ul>
               </div>
 
-            </div>
+            </div> -->
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -115,17 +112,17 @@
 
     <div class="dropdown-menu">
        <a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username?>">[DOLLARS]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=BTC'?>" style="font-size: 20px;">BTC</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ETH'?>" style="font-size: 20px;">ETH</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=NGN'?>" style="font-size: 20px;">[NGN]</a>
-<a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=EUR'?>" style="font-size: 20px;">[EURO]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=GBP'?>" style="font-size: 20px;">[POUNDS]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=CAD'?>" style="font-size: 20px;">[C$]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ZAR'?>" style="font-size: 20px;">[RAND]</a>
-<a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=AED'?>" style="font-size: 20px;">[DIRHAMS]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=INR'?>" style="font-size: 20px;">[INR]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PKR'?>" style="font-size: 20px;">[PKR]</a>
-<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PHP'?>" style="font-size: 20px;">[PHP]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=BTC'?>">BTC</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ETH'?>">ETH</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=NGN'?>">[NGN]</a>
+<a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=EUR'?>">[EURO]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=GBP'?>">[POUNDS]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=CAD'?>">[C$]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=ZAR'?>">[RAND]</a>
+<a  class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=AED'?>">[DIRHAMS]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=INR'?>">[INR]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PKR'?>">[PKR]</a>
+<a class="dropdown-item" target="_BLANK" href="<?=$_SERVER['PHP_SELF'].'?print='.$username.'&x=PHP'?>">[PHP]</a>
     </div>
 </div>
 
@@ -157,10 +154,15 @@
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#appreciate" >
     Appreciate Voters
 </button>
+	
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#appreciateATP" >
+    Appreciate this project
+</button>
 
 
 
-<!-- Modal -->
+<!-- Modal AV -->
 <div class="modal fade" style="font-size: 15px;" id="appreciate" tabindex="-1" role="dialog" aria-labelledby="appreciateLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
@@ -235,8 +237,7 @@ id="sel2"  id="voter">
      
     </div>
 </div>
-
-		
+	
         <!-- Button trigger modal -->
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
     Cummulative Voter Details
@@ -321,22 +322,6 @@ id="sel2"  id="voter">
                     </div>
 
                   </div>		
-			
-			
-			
-	
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
   
   
             </div>
@@ -349,31 +334,41 @@ id="sel2"  id="voter">
 
 
 
- <a class="btn btn-primary" data-toggle="modal" data-target="#need">What You Need to Know</a>
-	
-
-
- Designed by <a href="https://steemit.com/@akintunde" target="_BLANK" style="border-bottom:dotted 5px #4B5F71">Akintunde</a>
-
-</div>
+        <a class="btn btn-dark" data-toggle="modal" data-target="#telegram" style="color: white;">Telegram /Discord Channel</a>
+		
+		
+		</div>
 
 			     <div class="title_left" style="margin-top: 4px;">
 				  <div class="col-md-5 col-sm-5 col-xs-12 form-group">
 				
 				<h2 style="color: #000;text-transform: uppercase;"> <?=$username ?> 's Payout  <a data-toggle="tooltip" data-placement="top" title="HOME" target="_BLANK" href="https://steemit.com/@<?=$username ?>">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-              </a></h2>
+              </a>   <a class="btn btn-primary" data-toggle="modal" style="margin-bottom: 0px;" data-target="#gift-<?=$username?>" style="color: white;">GIFT USER</a></h2>
+			  
+			 
+		
+		<!--- GIFT MODAL !--->
+		
+		
+		
+		
+		
+		
+		
+		
+		
 				 </div>
 				 </div>
 			  
 			  
 			   <div class="title_center" style="margin-top: 6px;">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-				<form action="">
+				<form action="index.php">
                   <div class="input-group">
                     <input type="text" name="username" class="form-control" placeholder="Input Your Username" />
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Check</button>
+                      <button class="btn btn-default" type="submit">Check</button>
                     </span>
                   </div>
 				  </form>
@@ -556,9 +551,22 @@ id="sel2"  id="voter">
 			
 				<td align="center">
 
-<div class="btn-group" style="margin:5px;">
-    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Voters</button>
+				
+				
 
+				
+				
+				
+				
+				
+				
+<div class="btn-group" style="margin:5px;">
+    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Voters<b>[<?=$b["vcount"]?>]</b></button>
+
+	
+	
+	
+	
     <div class="dropdown-menu" style="max-height:200px;
           overflow-y:auto;" >
   
@@ -571,14 +579,14 @@ id="sel2"  id="voter">
 <a class="dropdown-item" target="_BLANK" href="http://steemit.com/@<?=$v['voter']?>"> <span style="color: blue;"><?=$v['voter']?></span>, <span style="color: green;"> <?=round($v['money'],6)?> <?=$b["b_ext"]?> </span> , <span style="color: red;"><?=$v['percent']. '%'?></span></a>  
  	
 		
-<?php $n++; } ?>
+<?php $n++; if ($n == 1){$hv = round($v['money'],6);} } ?>
       </div>
 </div>
 </td>
 
 					<td><?=$b['created']?></td>
 			
-			<td><a target="_BLANK" href="https://steemit.com/@<?=$b['voters'][0]['voter']?>"><?=$b['voters'][0]['voter']?></a></td>
+			<td><a target="_BLANK" href="https://steemit.com/@<?=$b['voters'][0]['voter']?>"><?=$b['voters'][0]['voter']?>(<?=$hv?>)</a></td>
 			<td><?=$b['each_pay']?></td>
 		
 			</tr>
@@ -626,7 +634,7 @@ id="sel2"  id="voter">
                     <p class="text-muted font-13 m-b-30">
                       This Table Shows the List of Steem Comments Payouts</code>
                     </p>
-                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <table  id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th><?=$lang['PostLink'];?></th>
@@ -657,7 +665,7 @@ id="sel2"  id="voter">
 				<td align="center">
 
 <div class="btn-group" style="margin:5px;">
-    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Voters</button>
+    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Voters<b>[<?=$b["vcount"]?>]</b></button>
 
     <div class="dropdown-menu" style="max-height:200px;
           overflow-y:auto;" >
