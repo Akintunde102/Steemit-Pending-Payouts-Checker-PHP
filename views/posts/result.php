@@ -1,5 +1,8 @@
+<body class="nav-sm" 
+style="font-family: Open Sans, sans-serif;
 
-  <body class="nav-sm">
+
+">
     <div class="container body">
       <div class="main_container">
      <!--   <div class="col-md-3 left_col menu_fixed">

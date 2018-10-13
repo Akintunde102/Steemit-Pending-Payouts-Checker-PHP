@@ -10,6 +10,13 @@
 
    <title><?=$lang['Name']?></title>
 
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#telegram').modal('show');
+    });
+</script>
+
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116553399-1"></script>
 <script>
@@ -19,6 +26,8 @@
 
   gtag('config', 'UA-116553399-1');
 </script>
+
+
 
     <!-- Bootstrap -->
     <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

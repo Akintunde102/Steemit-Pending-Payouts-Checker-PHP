@@ -1,10 +1,38 @@
 <?php
+require_once ('vendor/autoload.php');
+
+
 class post {
     
     public function __construct() {
-    error_reporting(0);	
-		
-		  if (!empty($_GET['username'])){ $username = trim($_GET["username"]);}
+ error_reporting(0);	
+		  if (!empty($_GET['username'])){
+
+		  $username = trim($_GET["username"]); 
+		  /*** 
+// setting the access and configration to your database
+$db = new \Filebase\Database([
+    'dir' => 'models/database/userlog'
+]);
+// in this example, you would search an exact user name
+// It would technically be stored as user_name.json in the directories
+$item = $db->get($username);
+
+if (file_exists('models/database/userlog/'.$username.'.json')){$count = $item->count; $item->count = $count + 1;
+}
+else {$item->count = 1;
+}
+
+$item->save();
+
+**/
+
+
+
+
+
+
+		  }
 	else if (!empty($_GET['print'])){ $username = $_GET["print"]; @$x = $_GET["x"];}
 	
 $username = str_replace('@', '', $username);
@@ -13,9 +41,7 @@ $this->username      = strtolower($username);
 
 global $lang,$site_name;
  $this->lang = $lang;
- $this->site_name = 'localhost';
-
-
+ $this->site_name = 'localhost/sp';
     }
 
 	
@@ -131,6 +157,7 @@ foreach ($data as $item) {
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
 				$newItems[$count]['voters'] = $item["active_votes"];
+				$newItems[$count]['vcount'] = count($item["active_votes"]);
 				
 				
 					
@@ -264,7 +291,7 @@ foreach ($data as $item) {
 			
 			$author_link = "https://www.steemit.com/@".$item["author"];
 
-			$post_title = substr($item["title"],0,44).'...';
+			$post_title = substr($item["root_title"],0,44).'...';
 			
 			
 			
@@ -293,6 +320,7 @@ foreach ($data as $item) {
 				$newItems[$count]['each_pay'] = $each_pay;
 				$newItems[$count]['parent_permlink'] = $item["parent_permlink"];
 				$newItems[$count]['voters'] = $item["active_votes"];
+				$newItems[$count]['vcount'] = count($item["active_votes"]);
 			
 			
 			
@@ -632,6 +660,69 @@ $time = date("M d, Y h:i:s");
 	 
 	  $type = strtoupper($_POST['type']);
 	  $memo = urlencode($_POST['memo']);
+	  $redirect = urlencode($this->site_name);
+	  $url ='https://steemconnect.com/sign/transfer?to='.$to.'&amount='.$amount.'%20'.$type.'&memo='.$memo.'&redirect_uri='.$redirect;
+	  
+	  
+	  header("Location: $url");
+	  }
+	  }
+	  exit;
+	  
+  }
+  
+  
+  Public function sendmemo2(){
+	
+	  if (!empty($_POST['mforms'])){
+	  
+	  
+	  if ($_POST['amount'] && $_POST['type']){
+	  
+	  $to = 'steempayout';
+	 // $from = trim($_POST['from']);
+	  
+	  if (is_numeric(trim($_POST["amount"]))){
+		  
+		  $amount = number_format((float)$_POST['amount'], 3, '.', '');
+		  
+		   if ($_POST["amount"] < 0.001){echo 'The least Amount is 0.001, You can not send lower<br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit;}
+		   
+		  }
+	  else {echo 'Amount Sent Must be a Number <br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit; }
+	  
+	 
+	  $type = strtoupper($_POST['type']);
+	  $memo = urlencode('Donation For Project Support');
+	  $redirect = urlencode($this->site_name);
+	  $url ='https://steemconnect.com/sign/transfer?to='.$to.'&amount='.$amount.'%20'.$type.'&memo='.$memo.'&redirect_uri=https://'.$redirect;
+	  
+	  
+	  header("Location: $url");
+	  }
+	  }
+	  exit;
+	  
+  }
+  Public function giftuser(){
+	echo 'in';
+	  if (!empty($_POST['gift'])){
+	  
+	  
+	  if ($_POST['amount'] && $_POST['type']){
+	  
+	  $to = $_POST['user'] ;
+	  
+	  if (is_numeric(trim($_POST["amount"]))){
+		  
+		  $amount = number_format((float)$_POST['amount'], 3, '.', '');
+		  
+		   if ($_POST["amount"] < 0.001){echo 'The least Amount is 0.001, You can not send lower<br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit;}
+		   
+		  }
+	  else {echo 'Amount Sent Must be a Number <br/> <a href="javascript:history.go(-1)">GO BACK</a>'; exit; }
+	  $type = strtoupper($_POST['type']);
+	  $memo = urlencode('A GIFT');
 	  $redirect = urlencode($this->site_name);
 	  $url ='https://steemconnect.com/sign/transfer?to='.$to.'&amount='.$amount.'%20'.$type.'&memo='.$memo.'&redirect_uri='.$redirect;
 	  
