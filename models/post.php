@@ -29,9 +29,6 @@ $item->save();
 
 
 
-
-
-
 		  }
 	else if (!empty($_GET['print'])){ $username = $_GET["print"]; @$x = $_GET["x"];}
 	
@@ -115,8 +112,6 @@ foreach ($data as $item) {
 			$author_link = "https://www.steemit.com/@".$item["author"];
 
 			$post_title = substr($item["title"],0,44).'...';
-			
-			
 			
 			$price = str_replace(" SBD", "", $item["pending_payout_value"]);
 	
@@ -322,9 +317,7 @@ foreach ($data as $item) {
 				$newItems[$count]['voters'] = $item["active_votes"];
 				$newItems[$count]['vcount'] = count($item["active_votes"]);
 			
-			
-			
-			                $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
+			     $this->array_sort_by_column($newItems[$count]['voters'], 'rshares');
 				
 				$rshares_sum = array_sum(array_map(function($var) {
   return $var['rshares'];

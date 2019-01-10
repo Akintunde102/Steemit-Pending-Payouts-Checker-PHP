@@ -1,10 +1,10 @@
-   <!-- Footer -->
+   <!-- Footer 
     <footer class="footer bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 text-center text-lg-left my-auto">
             <ul class="list-inline mb-2">
-			  <!--
+
               <li class="list-inline-item">&sdot;</li>
               <li class="list-inline-item">
                 <a href="#">Contact</a>
@@ -17,11 +17,13 @@
               <li class="list-inline-item">
                 <a href="#">Privacy Policy</a>
               </li>
-			  -->
+
             </ul>
             <p class="text-muted big mb-4 mb-lg-0">Designed by <a href="https://steemit.com/@akintunde">Akintunde</a></p>
             <p class="text-muted small mb-4 mb-lg-0">&copy; STEEMPAYOUT 2018. All Rights Reserved.</p>
           </div>
+
+          -->
 		  <!--
           <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
             <ul class="list-inline mb-0">
@@ -47,8 +49,7 @@
       </div>
     </footer>
  <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-</script>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>s
 </body>
 </html>
